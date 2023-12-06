@@ -103,25 +103,31 @@ class Pokemon {
 }
 class fireType extends Pokemon {
     private String type;
+    private double typeMod; // Modifier for damage calculation
     public fireType() {
         type = "Fire";
     }
     public fireType(String pid){
         if(Objects.equals(pid, "Charmander")){
-            name = pid;
-            hp = 63;
-            atk = 41;
-            def = 30;
-            spd = 35;
-            spe = 44;
-            moveSpecial = true;
-            catchRate = 0.4;
+            setName(pid);
+            setHp(63);
+            setAtk(41);
+            setDef(30);
+            setSpd(35);
+            setSpe(44);
+            setMoveSpecial(true);
+            setCatchRate(0.4);
         }
     }
     public String getType() {
         return type;
     }
 
+
+
+    public double getTypeMod() {
+        return typeMod;
+    }
 }
 class waterType extends Pokemon {
     private String type;
@@ -130,14 +136,14 @@ class waterType extends Pokemon {
     }
     public waterType(String pid){
         if(Objects.equals(pid, "Squirtle")){
-            name = pid;
-            hp = 66;
-            atk = 35;
-            def = 44;
-            spd = 43;
-            spe = 33;
-            moveSpecial = true;
-            catchRate = 0.4;
+            setName(pid);
+            setHp(66);
+            setAtk(35);
+            setDef(44);
+            setSpd(43);
+            setSpe(33);
+            setMoveSpecial(true);
+            setCatchRate(0.4);
         }
     }
     public String getType() {
@@ -151,14 +157,14 @@ class normalType extends Pokemon {
     }
     public normalType(String pid){
         if(Objects.equals(pid, "Meowth")){
-            name = pid;
-            hp = 76;
-            atk = 38;
-            def = 29;
-            spd = 33;
-            spe = 74;
-            moveSpecial = false;
-            catchRate = 0.33;
+            setName(pid);
+            setHp(76);
+            setAtk(38);
+            setDef(29);
+            setSpd(33);
+            setSpe(74);
+            setMoveSpecial(false);
+            setCatchRate(0.33);
         }
     }
     public String getType() {
@@ -172,14 +178,14 @@ class fightType extends Pokemon {
     }
     public fightType(String pid){
         if(Objects.equals(pid, "Machop")){
-            name = pid;
-            hp = 103;
-            atk = 68;
-            def = 44;
-            spd = 31;
-            spe = 31;
-            moveSpecial = false;
-            catchRate = 0.33;
+            setName(pid);
+            setHp(103);
+            setAtk(68);
+            setDef(44);
+            setSpd(31);
+            setSpe(31);
+            setMoveSpecial(false);
+            setCatchRate(0.33);
         }
     }
     public String getType() {
@@ -189,18 +195,18 @@ class fightType extends Pokemon {
 class ghostType extends Pokemon {
     private String type;
     public ghostType() {
-        type = "Fighting";
+        type = "Ghost";
     }
     public ghostType(String pid){
         if(Objects.equals(pid, "Haunter")){
-            name = pid;
-            hp = 97;
-            atk = 51;
-            def = 46;
-            spd = 55;
-            spe = 92;
-            moveSpecial = false;
-            catchRate = 0.25;
+            setName(pid);
+            setHp(97);
+            setAtk(51);
+            setDef(46);
+            setSpd(55);
+            setSpe(92);
+            setMoveSpecial(false);
+            setCatchRate(0.25);
         }
     }
     public String getType() {
@@ -214,14 +220,14 @@ class elecType extends Pokemon {
     }
     public elecType(String pid){
         if(Objects.equals(pid, "Pikachu")){
-            name = pid;
-            hp = 113;
-            atk = 66;
-            def = 53;
-            spd = 66;
-            spe = 116;
-            moveSpecial = true;
-            catchRate = 0.25;
+            setName(pid);
+            setHp(113);
+            setAtk(66);
+            setDef(53);
+            setSpd(66);
+            setSpe(116);
+            setMoveSpecial(true);
+            setCatchRate(0.25);
         }
     }
     public String getType() {
@@ -235,14 +241,14 @@ class grassType extends Pokemon {
     }
     public grassType(String pid){
         if(Objects.equals(pid, "Venusaur")){
-            name = pid;
-            hp = 134;
-            atk = 101;
-            def = 84;
-            spd = 101;
-            spe = 81;
-            moveSpecial = true;
-            catchRate = 0.15;
+            setName(pid);
+            setHp(134);
+            setAtk(101);
+            setDef(84);
+            setSpd(101);
+            setSpe(81);
+            setMoveSpecial(true);
+            setCatchRate(0.15);
         }
     }
     public String getType() {
@@ -256,14 +262,14 @@ class psychType extends Pokemon {
     }
     public psychType(String pid){
         if(Objects.equals(pid, "Mewtwo")){
-            name = pid;
-            hp = 209;
-            atk = 202;
-            def = 120;
-            spd = 120;
-            spe = 171;
-            moveSpecial = true;
-            catchRate = 0.15;
+            setName(pid);
+            setHp(209);
+            setAtk(202);
+            setDef(120);
+            setSpd(120);
+            setSpe(171);
+            setMoveSpecial(true);
+            setCatchRate(0.15);
         }
     }
     public String getType() {
