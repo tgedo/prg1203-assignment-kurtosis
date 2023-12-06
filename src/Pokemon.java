@@ -8,8 +8,9 @@ class Pokemon {
     protected int spd;
     protected int spe; // Speed is abbreviated as Spe to avoid confusion with Special Defence
     protected String type;
-    protected boolean moveSpecial;
+    protected boolean moveIsSpecial;
     protected double catchRate;
+
 
     public Pokemon() {
         name = "MissingNo.";
@@ -18,7 +19,8 @@ class Pokemon {
         def = 0;
         spd = 6;
         spe = 29;
-        moveSpecial = false;
+        type = "Normal";
+        moveIsSpecial = false;
         catchRate = 4;
 
     }
@@ -70,13 +72,19 @@ class Pokemon {
         this.spe = spe;
     }
 
-
-    public boolean isMoveSpecial() {
-        return moveSpecial;
+    public boolean isMoveIsSpecial() {
+        return moveIsSpecial;
     }
 
-    public void setMoveSpecial(boolean moveSpecial) {
-        this.moveSpecial = moveSpecial;
+    public void setMoveIsSpecial(boolean moveIsSpecial) {
+        this.moveIsSpecial = moveIsSpecial;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getCatchRate() {
@@ -86,6 +94,11 @@ class Pokemon {
     public void setCatchRate(double catchRate) {
         this.catchRate = catchRate;
     }
+    public String takeDamage(int enemyPower){
+        return "The attack is effective";
+    }
+
+
 
     @Override
     public String toString() {
@@ -96,18 +109,16 @@ class Pokemon {
                 ", def=" + def +
                 ", spd=" + spd +
                 ", spe=" + spe +
-                ", moveSpecial=" + moveSpecial +
+                ", moveSpecial=" + moveIsSpecial +
                 ", catchRate=" + catchRate +
                 '}';
     }
 }
-class fireType extends Pokemon {
-    private String type;
-    private double typeMod; // Modifier for damage calculation
-    public fireType() {
-        type = "Fire";
+class Firetype extends Pokemon {
+    public Firetype(){
+        setType("Fire");
     }
-    public fireType(String pid){
+    public Firetype(String pid){
         if(Objects.equals(pid, "Charmander")){
             setName(pid);
             setHp(63);
@@ -115,24 +126,28 @@ class fireType extends Pokemon {
             setDef(30);
             setSpd(35);
             setSpe(44);
-            setMoveSpecial(true);
+            setMoveIsSpecial(true);
             setCatchRate(0.4);
         }
     }
-    public String getType() {
-        return type;
-    }
-
-
-
-    public double getTypeMod() {
-        return typeMod;
+    @Override
+    public String takeDamage(int enemyPower){
+        if(enemy.getType() == "Grass"){
+            hp -= (int) (enemyPower*0.5);
+            return "The attack is not very effective";
+        } else if (enemy.getType() == "Water") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class waterType extends Pokemon {
-    private String type;
-    public waterType() {
-        type = "Water";
+    public waterType(){
+        setType("Water");
     }
     public waterType(String pid){
         if(Objects.equals(pid, "Squirtle")){
@@ -142,18 +157,28 @@ class waterType extends Pokemon {
             setDef(44);
             setSpd(43);
             setSpe(33);
-            setMoveSpecial(true);
+            setMoveIsSpecial(true);
             setCatchRate(0.4);
         }
     }
-    public String getType() {
-        return type;
+    @Override
+    public String takeDamage(int enemyPower){
+        if(enemy.getType() == "Fire"){
+            hp -= (int) (enemyPower*0.5);
+            return "The attack is not very effective";
+        } else if (enemy.getType() == "Grass"||"Electric") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class normalType extends Pokemon {
-    private String type;
-    public normalType() {
-        type = "Normal";
+    public normalType(){
+        setType("Normal");
     }
     public normalType(String pid){
         if(Objects.equals(pid, "Meowth")){
@@ -163,18 +188,27 @@ class normalType extends Pokemon {
             setDef(29);
             setSpd(33);
             setSpe(74);
-            setMoveSpecial(false);
+            setMoveIsSpecial(false);
             setCatchRate(0.33);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+        if (enemy.getType() == "Fighting") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        } else if (enemy.getType() == "Ghost"){
+            hp -= (int) (enemyPower*0.1);
+            return "The attack was ineffective";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class fightType extends Pokemon {
-    private String type;
-    public fightType() {
-        type = "Fighting";
+    public fightType(){
+        setType("Fighting");
     }
     public fightType(String pid){
         if(Objects.equals(pid, "Machop")){
@@ -184,18 +218,24 @@ class fightType extends Pokemon {
             setDef(44);
             setSpd(31);
             setSpe(31);
-            setMoveSpecial(false);
+            setMoveIsSpecial(false);
             setCatchRate(0.33);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+        if (enemy.getType() == "Psychic") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class ghostType extends Pokemon {
-    private String type;
-    public ghostType() {
-        type = "Ghost";
+    public ghostType(){
+        setType("Ghost");
     }
     public ghostType(String pid){
         if(Objects.equals(pid, "Haunter")){
@@ -205,18 +245,26 @@ class ghostType extends Pokemon {
             setDef(46);
             setSpd(55);
             setSpe(92);
-            setMoveSpecial(false);
+            setMoveIsSpecial(false);
             setCatchRate(0.25);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+        if (enemy.getType() == "Ghost") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        } else if (enemy.getType() == "Normal"||"Fighting") {
+            hp -= (int) (enemyPower*0.1);
+            return "The attack is ineffective";
+        } else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class elecType extends Pokemon {
-    private String type;
-    public elecType() {
-        type = "Electric";
+    public elecType(){
+        setType("Electric");
     }
     public elecType(String pid){
         if(Objects.equals(pid, "Pikachu")){
@@ -226,18 +274,18 @@ class elecType extends Pokemon {
             setDef(53);
             setSpd(66);
             setSpe(116);
-            setMoveSpecial(true);
+            setMoveIsSpecial(true);
             setCatchRate(0.25);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+            hp -= enemyPower;
+            return "The attack is effective!";
     }
 }
 class grassType extends Pokemon {
-    private String type;
-    public grassType() {
-        type = "Grass";
+    public grassType(){
+        setType("Grass");
     }
     public grassType(String pid){
         if(Objects.equals(pid, "Venusaur")){
@@ -247,18 +295,27 @@ class grassType extends Pokemon {
             setDef(84);
             setSpd(101);
             setSpe(81);
-            setMoveSpecial(true);
+            setMoveIsSpecial(true);
             setCatchRate(0.15);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+        if(enemy.getType() == "Water"){
+            hp -= (int) (enemyPower*0.5);
+            return "The attack is not very effective";
+        } else if (enemy.getType() == "Fire") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 class psychType extends Pokemon {
-    private String type;
-    public psychType() {
-        type = "Psychic";
+    public psychType(){
+        setType("Psychic");
     }
     public psychType(String pid){
         if(Objects.equals(pid, "Mewtwo")){
@@ -268,12 +325,22 @@ class psychType extends Pokemon {
             setDef(120);
             setSpd(120);
             setSpe(171);
-            setMoveSpecial(true);
+            setMoveIsSpecial(true);
             setCatchRate(0.15);
         }
     }
-    public String getType() {
-        return type;
+    public String takeDamage(int enemyPower){
+        if(enemy.getType() == "Fighting"){
+            hp -= (int) (enemyPower*0.5);
+            return "The attack is not very effective";
+        } else if (enemy.getType() == "Ghost") {
+            hp -= enemyPower*2;
+            return "The attack is super effective!";
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
     }
 }
 
