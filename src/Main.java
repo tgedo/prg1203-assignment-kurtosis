@@ -5,13 +5,13 @@ public class Main {
         System.out.println(pokemon1.getName());
         System.out.println(pokemon2.getName());
 
-        if(pokemon1.isMoveSpecial()){
+        if(pokemon1.isMoveIsSpecial()){
             System.out.println(pokemon1.getName() + "'s attack is Special.");
         } else {
             System.out.println(pokemon1.getName() + "'s attack is Physical");
         }
 
-        fireType pokemon3 = new fireType("Charmander");
+        Firetype pokemon3 = new Firetype("Charmander");
         System.out.println(pokemon3.getName());
 
     }
