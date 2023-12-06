@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class User {
-    private static String[] userIDList;
-    private static String[] userNameList;
-    private static String[] userPassList;
+    static ArrayList userIDList = new ArrayList<String>();
+    static ArrayList userNameList = new ArrayList<String>();
+    static ArrayList userPassList = new ArrayList<String>();
 
     private String userID;
     private String userName;
