@@ -6,6 +6,7 @@ public class User {
     static ArrayList userPassList = new ArrayList<String>();
 
     private int userID;
+    private static int lastAssignedID = 0; // Static variable to keep track of the last assigned userID
     private String userName;
     private String userPass;
     private int Playcount = 0;
@@ -16,9 +17,10 @@ public class User {
         this.userName = userName;
         this.userPass = userPass;
     }
-    
+
+
     public User(String userName, String userPass) {
-        this.userID = (userIDList.get(userIDList.size()-1)) + 1; //help
+        this.userID = ++lastAssignedID; // Increment lastAssignedID and assign it to userID
         this.userName = userName;
         this.userPass = userPass;
     }
@@ -44,7 +46,7 @@ public class User {
     }
 
     public static void addUserNameList(String userName) {
-        User.userNameList.add(userName)
+        User.userNameList.add(userName);
     }
 
     public static ArrayList getUserPassList() {
@@ -52,14 +54,14 @@ public class User {
     }
 
     public static void addUserPassList(String userPass) {
-        User.userPassList.add(userPass)
+        User.userPassList.add(userPass);
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
