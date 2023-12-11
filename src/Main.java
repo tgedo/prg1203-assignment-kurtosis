@@ -6,9 +6,7 @@ public class Main {
     int playerDecision;
 
     public static void main(String[] args) {
-
-        //create a new dummy user with manual id here cause code shit
-        User dummy = new User(69000, "Your Mum", "Ash Ketchump");
+        User dummy = new User("Ash Ketchump", "ash123"); //test user
 
     }
 

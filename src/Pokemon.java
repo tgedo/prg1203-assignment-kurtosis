@@ -5,12 +5,11 @@ class Pokemon {
     protected int hp;
     protected int atk;
     protected int def;
-    protected int spd;
-    protected int spe; // Speed is abbreviated as Spe to avoid confusion with Special Defence
+    protected int spd;  //This is Special Defense
+    protected int spe;  // Speed is abbreviated as Spe to avoid confusion with Special Defence
     protected String type;
     protected boolean moveIsSpecial;
     protected double catchRate;
-
 
     public Pokemon() {
         name = "MissingNo.";
@@ -22,8 +21,8 @@ class Pokemon {
         type = "Normal";
         moveIsSpecial = false;
         catchRate = 4;
-
     }
+
     public String getName() {
         return name;
     }
@@ -98,8 +97,6 @@ class Pokemon {
         return "The attack is effective";
     }
 
-
-
     @Override
     public String toString() {
         return "Pokemon{" +
@@ -114,6 +111,9 @@ class Pokemon {
                 '}';
     }
 }
+
+// TODO split each type into different files bruh
+
 class Firetype extends Pokemon {
     public Firetype(){
         setType("Fire");
@@ -130,6 +130,7 @@ class Firetype extends Pokemon {
             setCatchRate(0.4);
         }
     }
+
     @Override
     public String takeDamage(int enemyPower){
         if(enemy.getType() == "Grass"){
@@ -145,6 +146,7 @@ class Firetype extends Pokemon {
         }
     }
 }
+
 class waterType extends Pokemon {
     public waterType(){
         setType("Water");
