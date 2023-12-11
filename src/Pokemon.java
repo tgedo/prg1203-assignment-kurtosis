@@ -1,4 +1,6 @@
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 class Pokemon {
     protected String name;
@@ -10,6 +12,11 @@ class Pokemon {
     protected String type;
     protected boolean moveIsSpecial;
     protected double catchRate;
+
+    public static String[] commonPokemon = {"Squirtle", "Charmander","Machop","Meowth"};
+    public static String[] uncommonPokemon = {"Pikachu","Haunter"};
+    public static String[] rarePokemon = {"Mewtwo","Venusaur"};
+    public static ArrayList<String> pokemonRate = new ArrayList<String>();
 
     public Pokemon() {
         name = "MissingNo.";
@@ -95,6 +102,24 @@ class Pokemon {
     }
     public String takeDamage(int enemyPower){
         return "The attack is effective";
+    }
+
+    public static void setPokemonRate(int commonRatio, int uncommonRatio, int rareRatio){
+        for(int common = 0; common < commonRatio; common++){
+            pokemonRate.addAll(Arrays.asList(commonPokemon));
+        }
+        for(int uncommon = 0; uncommon < uncommonRatio; uncommon++){
+            pokemonRate.addAll(Arrays.asList(uncommonPokemon));
+        }
+        for(int rare = 0; rare < rareRatio; rare++){
+            pokemonRate.addAll(Arrays.asList(commonPokemon));
+        }
+    }
+
+    public static Pokemon generatePokemon(){
+        Random random = new Random();
+        int rngChoosen = random.nextInt(pokemonRate.size()); 
+        return generatedPokemon;
     }
 
     @Override
