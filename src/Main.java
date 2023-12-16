@@ -17,10 +17,13 @@ public class Main {
     static int playerDecision;
 
     public static void main(String[] args) {
-        User dummy = new User("Ash Ketchump", "ash123"); //test user
+        //Generate test user, remove by submission
+        User dummy = new User("Ash Ketchump", "ash123"); 
+        dummy.AddPokemonIntoDeck(null);
+        dummy.AddPokemonIntoDeck(null);
         User player = MainMenu();
         StartGame(player);
-        
+
     }
 
     public static User MainMenu(){

@@ -7,11 +7,14 @@ class Pokemon {
     protected int hp;
     protected int atk;
     protected int def;
-    protected int spd;  //This is Special Defense
-    protected int spe;  // Speed is abbreviated as Spe to avoid confusion with Special Defence
-    protected String type;
+    /**Pokemon Special Defense Stat */
+    protected int spd; 
+    /** Pokemon Speed Stat */
+    protected int spe;
+    protected String type; 
     protected boolean moveIsSpecial;
     protected double catchRate;
+    protected int actionValue = 1000;
 
     public static String[] commonPokemon = {"Squirtle", "Charmander","Machop","Meowth"};
     public static String[] uncommonPokemon = {"Pikachu","Haunter"};
@@ -62,6 +65,7 @@ class Pokemon {
         this.def = def;
     }
 
+    /** Returns pokemon special defense stat */
     public int getSpd() {
         return spd;
     }
@@ -70,6 +74,7 @@ class Pokemon {
         this.spd = spd;
     }
 
+    /** Returns pokemon speed stat */
     public int getSpe() {
         return spe;
     }
@@ -114,6 +119,16 @@ class Pokemon {
         for(int rare = 0; rare < rareRatio; rare++){
             pokemonRate.addAll(Arrays.asList(commonPokemon));
         }
+    }
+
+    
+    public int getActionValue() {
+        return actionValue;
+    }
+
+/**Decrease the pokemon's action value by it's speed. @param speed */
+    public void decreaseActionValue(int speed) {
+        this.actionValue -= speed;
     }
 
     public static Pokemon generatePokemon(){
