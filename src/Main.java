@@ -1,23 +1,7 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private String info; //TODO add info
-    static Scanner sc = new Scanner(System.in);
-    static int playerDecision;
-
-    public static void main(String[] args) {
-        User dummy = new User("Ash Ketchump", "ash123"); //test user
-        User player = MainMenu();
-
-    }
-
-    public static User MainMenu(){
-        String[] options = {"Continue","New","Leaderboard","Quit"};
-        String errorMessage = "";
-
-        while (true) {
-            System.out.println("                                  ,'\\\r\n" + //
+    static private String info = "                                  ,'\\\r\n" + //
                     "    _.----.        ____         ,'  _\\   ___    ___     ____\r\n" + //
                     "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\r\n" + //
                     "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\r\n" + //
@@ -28,7 +12,23 @@ public class Main {
                     "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\r\n" + //
                     "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\r\n" + //
                     "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\r\n" + //
-                    "                                `'                            '-._|");
+                    "                                `'                            '-._|"; //TODO add more info
+    static Scanner sc = new Scanner(System.in);
+    static int playerDecision;
+
+    public static void main(String[] args) {
+        User dummy = new User("Ash Ketchump", "ash123"); //test user
+        User player = MainMenu();
+        StartGame(player);
+        
+    }
+
+    public static User MainMenu(){
+        String[] options = {"Continue","New","Leaderboard","Quit"};
+        String errorMessage = "";
+
+        while (true) {
+            System.out.println(info);
             for(int choice = 1; choice <= options.length; choice++){
                 System.out.println(choice + " : " + options[choice-1]);
             }
@@ -48,20 +48,26 @@ public class Main {
                 break;
         }
 
+        sc.nextLine();
         //Player chooses Continue
         if (playerDecision == 1){
            while (true) {
-            System.out.println("Logging into an account...");
+            System.out.println(errorMessage);
+            System.out.println();
+            System.out.println("Attempting login...");
             System.out.println("Enter a Username: ");
             String loginName = sc.nextLine();
             System.out.println("Enter a Password: ");
             String loginPass = sc.nextLine();
-            System.out.println(errorMessage);
+            
 
             for(User user : User.userList){
-                if(user.getUserName() == loginName){
-                    if(user.getUserPass() == loginPass){
+                System.out.println("Scanning :" + user.getUserName());
+                if(user.getUserName().contains(loginName)){
+                    errorMessage = "Password Incorrect!";
+                    if(user.getUserPass().equals(loginPass)){
                         errorMessage = "";
+                        System.out.println("Success! Logging in as " +loginName);
                         return user;
                     }
                 }
@@ -90,7 +96,7 @@ public class Main {
         }
     }
 
-    public void StartGame(User player){
+    public static void StartGame(User player){
         System.out.println("Starting game...");
     };
 

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//TODO update and read from .txt
 public class User {
     public static ArrayList<User> userList = new ArrayList<User>();
 
