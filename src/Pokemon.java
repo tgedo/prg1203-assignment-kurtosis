@@ -1,16 +1,25 @@
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 class Pokemon {
     protected String name;
     protected int hp;
     protected int atk;
     protected int def;
-    protected int spd;
-    protected int spe; // Speed is abbreviated as Spe to avoid confusion with Special Defence
-    protected String type;
+    /**Pokemon Special Defense Stat */
+    protected int spd; 
+    /** Pokemon Speed Stat */
+    protected int spe;
+    protected String type; 
     protected boolean moveIsSpecial;
     protected double catchRate;
+    protected int actionValue = 1000;
 
+    public static String[] commonPokemon = {"Squirtle", "Charmander","Machop","Meowth"};
+    public static String[] uncommonPokemon = {"Pikachu","Haunter"};
+    public static String[] rarePokemon = {"Mewtwo","Venusaur"};
+    public static ArrayList<String> pokemonRate = new ArrayList<String>();
 
     public Pokemon() {
         name = "MissingNo.";
@@ -22,8 +31,8 @@ class Pokemon {
         type = "Normal";
         moveIsSpecial = false;
         catchRate = 4;
-
     }
+
     public String getName() {
         return name;
     }
@@ -56,6 +65,7 @@ class Pokemon {
         this.def = def;
     }
 
+    /** Returns pokemon special defense stat */
     public int getSpd() {
         return spd;
     }
@@ -64,6 +74,7 @@ class Pokemon {
         this.spd = spd;
     }
 
+    /** Returns pokemon speed stat */
     public int getSpe() {
         return spe;
     }
@@ -98,7 +109,33 @@ class Pokemon {
         return "The attack is effective";
     }
 
+    public static void setPokemonRate(int commonRatio, int uncommonRatio, int rareRatio){
+        for(int common = 0; common < commonRatio; common++){
+            pokemonRate.addAll(Arrays.asList(commonPokemon));
+        }
+        for(int uncommon = 0; uncommon < uncommonRatio; uncommon++){
+            pokemonRate.addAll(Arrays.asList(uncommonPokemon));
+        }
+        for(int rare = 0; rare < rareRatio; rare++){
+            pokemonRate.addAll(Arrays.asList(commonPokemon));
+        }
+    }
 
+    
+    public int getActionValue() {
+        return actionValue;
+    }
+
+/**Decrease the pokemon's action value by it's speed. @param speed */
+    public void decreaseActionValue(int speed) {
+        this.actionValue -= speed;
+    }
+
+    public static Pokemon generatePokemon(){
+        Random random = new Random();
+        int rngChoosen = random.nextInt(pokemonRate.size()); 
+        return generatedPokemon;
+    }
 
     @Override
     public String toString() {
@@ -112,235 +149,6 @@ class Pokemon {
                 ", moveSpecial=" + moveIsSpecial +
                 ", catchRate=" + catchRate +
                 '}';
-    }
-}
-class Firetype extends Pokemon {
-    public Firetype(){
-        setType("Fire");
-    }
-    public Firetype(String pid){
-        if(Objects.equals(pid, "Charmander")){
-            setName(pid);
-            setHp(63);
-            setAtk(41);
-            setDef(30);
-            setSpd(35);
-            setSpe(44);
-            setMoveIsSpecial(true);
-            setCatchRate(0.4);
-        }
-    }
-    @Override
-    public String takeDamage(int enemyPower){
-        if(enemy.getType() == "Grass"){
-            hp -= (int) (enemyPower*0.5);
-            return "The attack is not very effective";
-        } else if (enemy.getType() == "Water") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class waterType extends Pokemon {
-    public waterType(){
-        setType("Water");
-    }
-    public waterType(String pid){
-        if(Objects.equals(pid, "Squirtle")){
-            setName(pid);
-            setHp(66);
-            setAtk(35);
-            setDef(44);
-            setSpd(43);
-            setSpe(33);
-            setMoveIsSpecial(true);
-            setCatchRate(0.4);
-        }
-    }
-    @Override
-    public String takeDamage(int enemyPower){
-        if(enemy.getType() == "Fire"){
-            hp -= (int) (enemyPower*0.5);
-            return "The attack is not very effective";
-        } else if (enemy.getType() == "Grass"||"Electric") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class normalType extends Pokemon {
-    public normalType(){
-        setType("Normal");
-    }
-    public normalType(String pid){
-        if(Objects.equals(pid, "Meowth")){
-            setName(pid);
-            setHp(76);
-            setAtk(38);
-            setDef(29);
-            setSpd(33);
-            setSpe(74);
-            setMoveIsSpecial(false);
-            setCatchRate(0.33);
-        }
-    }
-    public String takeDamage(int enemyPower){
-        if (enemy.getType() == "Fighting") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        } else if (enemy.getType() == "Ghost"){
-            hp -= (int) (enemyPower*0.1);
-            return "The attack was ineffective";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class fightType extends Pokemon {
-    public fightType(){
-        setType("Fighting");
-    }
-    public fightType(String pid){
-        if(Objects.equals(pid, "Machop")){
-            setName(pid);
-            setHp(103);
-            setAtk(68);
-            setDef(44);
-            setSpd(31);
-            setSpe(31);
-            setMoveIsSpecial(false);
-            setCatchRate(0.33);
-        }
-    }
-    public String takeDamage(int enemyPower){
-        if (enemy.getType() == "Psychic") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class ghostType extends Pokemon {
-    public ghostType(){
-        setType("Ghost");
-    }
-    public ghostType(String pid){
-        if(Objects.equals(pid, "Haunter")){
-            setName(pid);
-            setHp(97);
-            setAtk(51);
-            setDef(46);
-            setSpd(55);
-            setSpe(92);
-            setMoveIsSpecial(false);
-            setCatchRate(0.25);
-        }
-    }
-    public String takeDamage(int enemyPower){
-        if (enemy.getType() == "Ghost") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        } else if (enemy.getType() == "Normal"||"Fighting") {
-            hp -= (int) (enemyPower*0.1);
-            return "The attack is ineffective";
-        } else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class elecType extends Pokemon {
-    public elecType(){
-        setType("Electric");
-    }
-    public elecType(String pid){
-        if(Objects.equals(pid, "Pikachu")){
-            setName(pid);
-            setHp(113);
-            setAtk(66);
-            setDef(53);
-            setSpd(66);
-            setSpe(116);
-            setMoveIsSpecial(true);
-            setCatchRate(0.25);
-        }
-    }
-    public String takeDamage(int enemyPower){
-            hp -= enemyPower;
-            return "The attack is effective!";
-    }
-}
-class grassType extends Pokemon {
-    public grassType(){
-        setType("Grass");
-    }
-    public grassType(String pid){
-        if(Objects.equals(pid, "Venusaur")){
-            setName(pid);
-            setHp(134);
-            setAtk(101);
-            setDef(84);
-            setSpd(101);
-            setSpe(81);
-            setMoveIsSpecial(true);
-            setCatchRate(0.15);
-        }
-    }
-    public String takeDamage(int enemyPower){
-        if(enemy.getType() == "Water"){
-            hp -= (int) (enemyPower*0.5);
-            return "The attack is not very effective";
-        } else if (enemy.getType() == "Fire") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
-    }
-}
-class psychType extends Pokemon {
-    public psychType(){
-        setType("Psychic");
-    }
-    public psychType(String pid){
-        if(Objects.equals(pid, "Mewtwo")){
-            setName(pid);
-            setHp(209);
-            setAtk(202);
-            setDef(120);
-            setSpd(120);
-            setSpe(171);
-            setMoveIsSpecial(true);
-            setCatchRate(0.15);
-        }
-    }
-    public String takeDamage(int enemyPower){
-        if(enemy.getType() == "Fighting"){
-            hp -= (int) (enemyPower*0.5);
-            return "The attack is not very effective";
-        } else if (enemy.getType() == "Ghost") {
-            hp -= enemyPower*2;
-            return "The attack is super effective!";
-        }
-        else {
-            hp -= enemyPower;
-            return "The attack is effective!";
-        }
     }
 }
 

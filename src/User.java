@@ -1,100 +1,49 @@
 import java.util.ArrayList;
 
+//TODO update and read from .txt
 public class User {
-    static ArrayList userIDList = new ArrayList<Integer>();
-    static ArrayList userNameList = new ArrayList<String>();
-    static ArrayList userPassList = new ArrayList<String>();
+    public static ArrayList<User> userList = new ArrayList<User>();
 
     private int userID;
     private static int lastAssignedID = 0; // Static variable to keep track of the last assigned userID
     private String userName;
     private String userPass;
     private int Playcount = 0;
-    ArrayList deck = new ArrayList<Pokemon>();
-
-    public User(int userID, String userName, String userPass) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userPass = userPass;
-    }
-
+    private ArrayList<Pokemon> deck = new ArrayList<Pokemon>();
 
     public User(String userName, String userPass) {
         this.userID = ++lastAssignedID; // Increment lastAssignedID and assign it to userID
         this.userName = userName;
         this.userPass = userPass;
-    }
-
-    public void GeneratePokemon(String name, int HP, int ATK, int DEF, int SPD, int SPE, char type, int movePower, Boolean moveIsSpecial){
-        // TODO figure this part out thanks
-    }
-    
-    public void AddPokemonIntoDeck(Pokemon pokemon){
-        deck.add(pokemon);
-    }
-
-    public static ArrayList getUserIDList() {
-        return userIDList;
-    }
-
-    public static void addUserIDList(String userID) {
-        User.userIDList.add(userID);
-    }
-
-    public static ArrayList getUserNameList() {
-        return userNameList;
-    }
-
-    public static void addUserNameList(String userName) {
-        User.userNameList.add(userName);
-    }
-
-    public static ArrayList getUserPassList() {
-        return userPassList;
-    }
-
-    public static void addUserPassList(String userPass) {
-        User.userPassList.add(userPass);
+        User.userList.add(this);
     }
 
     public int getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public String getUserName() {
         return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getUserPass() {
         return userPass;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
-    }
-
     public int getPlaycount() {
         return Playcount;
     }
 
-    public void setPlaycount(int playcount) {
-        Playcount = playcount;
+    public void addPlaycount() {
+        Playcount += 1;
     }
 
-    public ArrayList getDeck() {
+    public ArrayList<Pokemon> getDeck() {
         return deck;
     }
 
-    public void setDeck(ArrayList deck) {
-        this.deck = deck;
+    public void AddPokemonIntoDeck(Pokemon pokemon){
+        deck.add(pokemon);
     }
 
     @Override

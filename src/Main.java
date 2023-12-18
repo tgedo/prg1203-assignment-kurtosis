@@ -1,29 +1,49 @@
 import java.util.Scanner;
 
 public class Main {
-    private String info; //TODO add info
-    Scanner sc = new Scanner(System.in);
-    int playerDecision;
+    static private String info = "                                  ,'\\\r\n" + //
+                    "    _.----.        ____         ,'  _\\   ___    ___     ____\r\n" + //
+                    "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\r\n" + //
+                    "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\r\n" + //
+                    " \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |\r\n" + //
+                    "   \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |\r\n" + //
+                    "    \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |\r\n" + //
+                    "     \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |\r\n" + //
+                    "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\r\n" + //
+                    "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\r\n" + //
+                    "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\r\n" + //
+                    "                                `'                            '-._|"; //TODO add more info
+    static Scanner sc = new Scanner(System.in);
+    static int playerDecision;
 
     public static void main(String[] args) {
-
-        //create a new dummy user with manual id here cause code shit
-        User dummy = new User(69000, "Your Mum", "Ash Ketchump");
+        //Generate test user, remove by submission
+        User dummy = new User("Ash Ketchump", "ash123"); 
+        dummy.AddPokemonIntoDeck(null);
+        dummy.AddPokemonIntoDeck(null);
+        User player = MainMenu();
+        StartGame(player);
 
     }
 
-    public User MainMenu(){
+    public static User MainMenu(){
         String[] options = {"Continue","New","Leaderboard","Quit"};
         String errorMessage = "";
 
-        //TODO can actually make all these into a method
         while (true) {
-            for(int choice = 1; choice < options.length; choice++){
-            System.out.println(choice + " : " + options[choice-1]);
+            System.out.println(info);
+            for(int choice = 1; choice <= options.length; choice++){
+                System.out.println(choice + " : " + options[choice-1]);
+            }
             System.out.println("\n Choose an option!");
             System.out.println(errorMessage);
-        }
-            playerDecision = sc.nextInt();
+        
+            try{
+                playerDecision = sc.nextInt();
+            } catch(Exception e){
+                errorMessage = "Choose an integer!";
+                continue;
+            };
             if (playerDecision > options.length || playerDecision < 1){
                 errorMessage = "Pick a number between 1 and " + options.length;
                 continue;
@@ -31,49 +51,56 @@ public class Main {
                 break;
         }
 
+        sc.nextLine();
         //Player chooses Continue
-        while (true) {
-            System.out.println("Enter a Username");
-            String newUserName = sc.nextLine();
-            System.out.println("Enter a Password");
-            String newUserPass = sc.nextLine();
-            
-        }
-        //TODO add login here
-
         if (playerDecision == 1){
-            while (true) {
-                for(int userIndex = 1; userIndex < User.userNameList.size(); userIndex++){
-                System.out.println(userIndex + " : " + User.userNameList.get(userIndex-1));
-                System.out.println("\n Choose an option!");
-                System.out.println(errorMessage);
-            }
-                playerDecision = sc.nextInt();
-                if (playerDecision > User.userNameList.size() || playerDecision < 1){
-                    errorMessage = "Pick a number between 1 and " + User.userNameList.size();
-                    continue;
+           while (true) {
+            System.out.println(errorMessage);
+            System.out.println();
+            System.out.println("Attempting login...");
+            System.out.println("Enter a Username: ");
+            String loginName = sc.nextLine();
+            System.out.println("Enter a Password: ");
+            String loginPass = sc.nextLine();
+            
+
+            for(User user : User.userList){
+                System.out.println("Scanning :" + user.getUserName());
+                if(user.getUserName().contains(loginName)){
+                    errorMessage = "Password Incorrect!";
+                    if(user.getUserPass().equals(loginPass)){
+                        errorMessage = "";
+                        System.out.println("Success! Logging in as " +loginName);
+                        return user;
+                    }
                 }
-                    break;
             }
+            errorMessage = "No user found!";
+            continue;
+        }
         }
 
         //Player chooses New
         else if (playerDecision == 2){
             System.out.println("Creating a new account...");
-            System.out.println("Enter a Username");
+            System.out.println("Enter a Username: ");
             String newUserName = sc.nextLine();
-            System.out.println("Enter a Password");
+            System.out.println("Enter a Password: ");
             String newUserPass = sc.nextLine();
             
-            //generate a new user here idk how help pls
-            
+            User newUser = new User(newUserName, newUserPass);
+            return newUser;
         }
-
         //Player chooses Leaderboard
 
         //Player chooses Quit
-
-
+        else{
+            return null;
+        }
     }
+
+    public static void StartGame(User player){
+        System.out.println("Starting game...");
+    };
 
 }
