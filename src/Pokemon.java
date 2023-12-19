@@ -1,36 +1,30 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
-class Pokemon {
-    protected String name;
-    protected int hp;
-    protected int atk;
-    protected int def;
+class Pokemon implements Cloneable {
+    protected String name = "MissingNo.";
+    protected int hp = 33;
+    protected int atk = 136;
+    protected int def = 0;
     /**Pokemon Special Defense Stat */
-    protected int spd; 
+    protected int spd = 6; 
     /** Pokemon Speed Stat */
-    protected int spe;
-    protected String type; 
-    protected boolean moveIsSpecial;
-    protected double catchRate;
+    protected int spe = 29;
+    protected Type type = Type.NONE; 
+    protected boolean moveIsSpecial = false;
+    protected double catchRate = 4;
     protected int actionValue = 1000;
 
-    public static String[] commonPokemon = {"Squirtle", "Charmander","Machop","Meowth"};
-    public static String[] uncommonPokemon = {"Pikachu","Haunter"};
-    public static String[] rarePokemon = {"Mewtwo","Venusaur"};
-    public static ArrayList<String> pokemonRate = new ArrayList<String>();
 
-    public Pokemon() {
-        name = "MissingNo.";
-        hp = 33;
-        atk = 136;
-        def = 0;
-        spd = 6;
-        spe = 29;
-        type = "Normal";
-        moveIsSpecial = false;
-        catchRate = 4;
+    public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, boolean moveIsSpecial,
+            double catchRate) {
+        this.name = name;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.spd = spd;
+        this.spe = spe;
+        this.type = type;
+        this.moveIsSpecial = moveIsSpecial;
+        this.catchRate = catchRate;
     }
 
     public String getName() {
@@ -91,10 +85,10 @@ class Pokemon {
         this.moveIsSpecial = moveIsSpecial;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -106,24 +100,12 @@ class Pokemon {
         this.catchRate = catchRate;
     }
 
-    public int dealDamage(){
-        return 
+    public String takeDamage(int enemyPower, Type enemyType){
+        return enemyPower + " Damage taken!";
     }
-
-    public String takeDamage(int enemyPower, String enemyType){
-        return enemyPower + " Damage taken";
-    }
-
-    public static void setPokemonRate(int commonRatio, int uncommonRatio, int rareRatio){
-        for(int common = 0; common < commonRatio; common++){
-            pokemonRate.addAll(Arrays.asList(commonPokemon));
-        }
-        for(int uncommon = 0; uncommon < uncommonRatio; uncommon++){
-            pokemonRate.addAll(Arrays.asList(uncommonPokemon));
-        }
-        for(int rare = 0; rare < rareRatio; rare++){
-            pokemonRate.addAll(Arrays.asList(commonPokemon));
-        }
+    
+    public String healHealth(int heal){
+        return "Recovered " + heal + " HP!";
     }
     
     public int getActionValue() {
@@ -135,11 +117,9 @@ class Pokemon {
         this.actionValue -= speed;
     }
 
-    // public static Pokemon generatePokemon(){
-    //     Random random = new Random();
-    //     int rngChoosen = random.nextInt(pokemonRate.size()); 
-    //     return generatedPokemon;
-    // }
+    public Pokemon clone() throws CloneNotSupportedException {
+        return (Pokemon) super.clone();
+    }
 
     @Override
     public String toString() {

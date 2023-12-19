@@ -1,28 +1,14 @@
-import java.util.Objects;
-
 class PsychicType extends Pokemon {
-    public PsychicType(){
-        setType("Psychic");
-    }
-    public PsychicType(String pid){
-        if(Objects.equals(pid, "Mewtwo")){
-            setName(pid);
-            setHp(209);
-            setAtk(202);
-            setDef(120);
-            setSpd(120);
-            setSpe(171);
-            setMoveIsSpecial(true);
-            setCatchRate(0.15);
-        }
+    public PsychicType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.PSYCHIC,moveIsSpecial,catchRate);
     }
 
     @Override
-    public String takeDamage(int enemyPower, String enemyType){
-        if(enemyType == "Fighting"){
+    public String takeDamage(int enemyPower, Type enemyType){
+        if (Type.PSYCHIC.strong.contains(enemyType)) {
             hp -= (int) (enemyPower*0.5);
             return "The attack is not very effective";
-        } else if (enemyType == "Ghost") {
+        } else if (Type.PSYCHIC.weak.contains(enemyType)) {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }
@@ -30,5 +16,5 @@ class PsychicType extends Pokemon {
             hp -= enemyPower;
             return "The attack is effective!";
         }
-    }
+    }   
 }

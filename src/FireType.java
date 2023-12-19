@@ -1,28 +1,14 @@
-import java.util.Objects;
-
-class Firetype extends Pokemon {
-    public Firetype(){
-        setType("Fire");
-    }
-    public Firetype(String pid){
-        if(Objects.equals(pid, "Charmander")){
-            setName(pid);
-            setHp(63);
-            setAtk(41);
-            setDef(30);
-            setSpd(35);
-            setSpe(44);
-            setMoveIsSpecial(true);
-            setCatchRate(0.4);
-        }
+class FireType extends Pokemon {
+    public FireType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.FIRE,moveIsSpecial,catchRate);
     }
 
     @Override
-    public String takeDamage(int enemyPower, String enemyType){
-        if(enemyType == "Grass"){
+    public String takeDamage(int enemyPower, Type enemyType){
+        if (Type.FIRE.strong.contains(enemyType)) {
             hp -= (int) (enemyPower*0.5);
             return "The attack is not very effective";
-        } else if (enemyType == "Water") {
+        } else if (Type.FIRE.weak.contains(enemyType)) {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }
@@ -30,5 +16,5 @@ class Firetype extends Pokemon {
             hp -= enemyPower;
             return "The attack is effective!";
         }
-    }
+    }   
 }
