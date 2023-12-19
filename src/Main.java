@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -15,41 +17,29 @@ public class Main {
                     "                                `'                            '-._|"; //TODO add more info
     static Scanner sc = new Scanner(System.in);
     static int playerDecision;
+    static String choicesMessage = "";
+    static String errorMessage = "";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        PokemonPool.setPokemonRate(3, 2, 1);
         //Generate test user, remove by submission
         User dummy = new User("Ash Ketchump", "ash123"); 
-        dummy.AddPokemonIntoDeck(null);
-        dummy.AddPokemonIntoDeck(null);
+        dummy.AddPokemonIntoDeck(new ElectricType("Pikachu",66, 35, 44, 43, 33, true, 0.4));
+        dummy.AddPokemonIntoDeck(new FireType("Charmander",66, 35, 44, 43, 33, true, 0.4));
         User player = MainMenu();
         StartGame(player);
 
     }
 
-    public static User MainMenu(){
+    public static User MainMenu() throws CloneNotSupportedException{
         String[] options = {"Continue","New","Leaderboard","Quit"};
-        String errorMessage = "";
+        System.out.println(info);
 
-        while (true) {
-            System.out.println(info);
             for(int choice = 1; choice <= options.length; choice++){
-                System.out.println(choice + " : " + options[choice-1]);
+                choicesMessage += (choice + " : " + options[choice-1] + "\n");
             }
-            System.out.println("\n Choose an option!");
-            System.out.println(errorMessage);
-        
-            try{
-                playerDecision = sc.nextInt();
-            } catch(Exception e){
-                errorMessage = "Choose an integer!";
-                continue;
-            };
-            if (playerDecision > options.length || playerDecision < 1){
-                errorMessage = "Pick a number between 1 and " + options.length;
-                continue;
-            }
-                break;
-        }
+            choicesMessage += ("\n Choose an option!");
+            validateSelection(1, options.length);
 
         sc.nextLine();
         //Player chooses Continue
@@ -63,13 +53,11 @@ public class Main {
             System.out.println("Enter a Password: ");
             String loginPass = sc.nextLine();
             
-
             for(User user : User.userList){
                 System.out.println("Scanning :" + user.getUserName());
                 if(user.getUserName().contains(loginName)){
                     errorMessage = "Password Incorrect!";
                     if(user.getUserPass().equals(loginPass)){
-                        errorMessage = "";
                         System.out.println("Success! Logging in as " +loginName);
                         return user;
                     }
@@ -89,6 +77,31 @@ public class Main {
             String newUserPass = sc.nextLine();
             
             User newUser = new User(newUserName, newUserPass);
+
+            //Generating Starters
+            ArrayList<Pokemon> starters =new ArrayList<>();
+            starters.add(PokemonPool.referencePokemon());
+            starters.add(PokemonPool.referencePokemon());
+            starters.add(PokemonPool.referencePokemon());
+            
+            //Choose Starter 1
+            for(int starter = 1; starter <= starters.size(); starter++){
+                choicesMessage += (starter + " : " + starters.get(starter-1).getName() + '\n');
+            }
+            choicesMessage += ("\n Pick a starter!");
+            validateSelection(1, starters.size());
+            newUser.AddPokemonIntoDeck(starters.get(playerDecision-1).clone());
+            starters.remove(playerDecision-1);
+
+            //Choose Starter 2
+            for(int starter = 1; starter <= starters.size(); starter++){
+                choicesMessage += (starter + " : " + starters.get(starter-1).getName() + '\n');
+            }
+            choicesMessage += ("\n Pick a starter!");
+            validateSelection(1, starters.size());
+            newUser.AddPokemonIntoDeck(starters.get(playerDecision-1).clone());
+
+            System.out.println(newUser);
             return newUser;
         }
         //Player chooses Leaderboard
@@ -103,4 +116,27 @@ public class Main {
         System.out.println("Starting game...");
     };
 
+    private static void validateSelection(int min,int max){
+        while (true) {
+            System.out.println(choicesMessage);
+            System.out.println(errorMessage);
+            
+             try{
+                playerDecision = sc.nextInt();
+            } catch(Exception e){
+                errorMessage = "Choose an integer!";
+                continue;
+            };
+            if (playerDecision > max || playerDecision < 1){
+                errorMessage = "Pick a number between 1 and " + max;
+                continue;
+            }
+            choicesMessage = "";
+            errorMessage = "";
+            break;
+        }
+    }
+
+
+    
 }
