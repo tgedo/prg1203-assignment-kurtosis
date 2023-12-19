@@ -23,7 +23,7 @@ public class Battle {
             for(Pokemon pokemon : field){
                 pokemon.decreaseActionValue(pokemon.getSpe());
                 if (pokemon.getActionValue() == 0){
-                    pokemon.dealDamage();
+                    pokemon.dealDamage(pokemon, pokemon); //Fix targetting
                 }
             }
         }
@@ -41,7 +41,7 @@ public class Battle {
 
             try(Scanner sc = new Scanner(System.in)){
                 int choice = sc.nextInt();
-                if (!player.getDeck().get(choice-1).equals(playerPokemon)){
+                if (!player.getDeck().get(choice-1).equals(playerPokemon)) { //TODO : FIX 
                     errorMessage = "";
                     return player.getDeck().get(choice-1);
                 }

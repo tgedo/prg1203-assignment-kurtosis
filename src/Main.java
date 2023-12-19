@@ -83,7 +83,7 @@ public class Main {
             starters.add(PokemonPool.referencePokemon());
             starters.add(PokemonPool.referencePokemon());
             starters.add(PokemonPool.referencePokemon());
-            
+
             //Choose Starter 1
             for(int starter = 1; starter <= starters.size(); starter++){
                 choicesMessage += (starter + " : " + starters.get(starter-1).getName() + '\n');
@@ -112,8 +112,10 @@ public class Main {
         }
     }
 
-    public static void StartGame(User player){
+    public static void StartGame(User player) throws CloneNotSupportedException{
         System.out.println("Starting game...");
+        new Battle(player, PokemonPool.referencePokemon().clone(), PokemonPool.referencePokemon().clone());
+        
     };
 
     private static void validateSelection(int min,int max){

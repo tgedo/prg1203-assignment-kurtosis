@@ -100,6 +100,21 @@ class Pokemon implements Cloneable {
         this.catchRate = catchRate;
     }
 
+    public int dealDamage(Pokemon attacker, Pokemon defender) {
+        // Base damage
+        int enemyPower = attacker.getAtk();
+        // Stat modifiers
+        if (attacker.moveIsSpecial) {
+            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getSpd() + 50)));
+        } else {
+            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getDef() + 50)));
+        }
+            // RNG element
+            enemyPower = (int) (enemyPower * (Math.random() * 0.15 + 0.85));
+            // Ensure minimum damage of 1
+            return Math.max(1, enemyPower);
+    }
+
     public String takeDamage(int enemyPower, Type enemyType){
         return enemyPower + " Damage taken!";
     }
