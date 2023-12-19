@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class ElectricType extends Pokemon {
     public ElectricType(){
         setType("Electric");
@@ -14,7 +16,7 @@ class ElectricType extends Pokemon {
             setCatchRate(0.25);
         }
     }
-    public String takeDamage(int enemyPower){
+    public String takeDamage(int enemyPower, String enemyType){
             hp -= enemyPower;
             return "The attack is effective!";
     }

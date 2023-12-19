@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class NormalType extends Pokemon {
     public NormalType(){
         setType("Normal");
@@ -14,11 +16,13 @@ class NormalType extends Pokemon {
             setCatchRate(0.33);
         }
     }
-    public String takeDamage(int enemyPower){
-        if (enemy.getType() == "Fighting") {
+
+    @Override
+    public String takeDamage(int enemyPower, String enemyType){
+        if (enemyType == "Fighting") {
             hp -= enemyPower*2;
             return "The attack is super effective!";
-        } else if (enemy.getType() == "Ghost"){
+        } else if (enemyType == "Ghost"){
             hp -= (int) (enemyPower*0.1);
             return "The attack was ineffective";
         }

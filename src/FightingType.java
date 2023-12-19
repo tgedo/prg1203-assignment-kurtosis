@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class FightingType extends Pokemon {
     public FightingType(){
         setType("Fighting");
@@ -14,8 +16,8 @@ class FightingType extends Pokemon {
             setCatchRate(0.33);
         }
     }
-    public String takeDamage(int enemyPower){
-        if (enemy.getType() == "Psychic") {
+    public String takeDamage(int enemyPower, String enemyType){
+        if (enemyType == "Psychic") {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }
