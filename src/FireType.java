@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Firetype extends Pokemon {
     public Firetype(){
         setType("Fire");
@@ -16,11 +18,11 @@ class Firetype extends Pokemon {
     }
 
     @Override
-    public String takeDamage(int enemyPower){
-        if(enemy.getType() == "Grass"){
+    public String takeDamage(int enemyPower, String enemyType){
+        if(enemyType == "Grass"){
             hp -= (int) (enemyPower*0.5);
             return "The attack is not very effective";
-        } else if (enemy.getType() == "Water") {
+        } else if (enemyType == "Water") {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }

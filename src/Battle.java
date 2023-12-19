@@ -24,7 +24,7 @@ public class Battle {
             for(Pokemon pokemon : field){
                 pokemon.decreaseActionValue(pokemon.getSpe());
                 if (pokemon.getActionValue() == 0){
-                    DealDamage(pokemon);
+                    pokemon.dealDamage();
                 }
             }
         }

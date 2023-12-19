@@ -105,8 +105,13 @@ class Pokemon {
     public void setCatchRate(double catchRate) {
         this.catchRate = catchRate;
     }
-    public String takeDamage(int enemyPower){
-        return "The attack is effective";
+
+    public int dealDamage(){
+        return 
+    }
+
+    public String takeDamage(int enemyPower, String enemyType){
+        return enemyPower + " Damage taken";
     }
 
     public static void setPokemonRate(int commonRatio, int uncommonRatio, int rareRatio){
@@ -120,7 +125,6 @@ class Pokemon {
             pokemonRate.addAll(Arrays.asList(commonPokemon));
         }
     }
-
     
     public int getActionValue() {
         return actionValue;
@@ -131,11 +135,11 @@ class Pokemon {
         this.actionValue -= speed;
     }
 
-    public static Pokemon generatePokemon(){
-        Random random = new Random();
-        int rngChoosen = random.nextInt(pokemonRate.size()); 
-        return generatedPokemon;
-    }
+    // public static Pokemon generatePokemon(){
+    //     Random random = new Random();
+    //     int rngChoosen = random.nextInt(pokemonRate.size()); 
+    //     return generatedPokemon;
+    // }
 
     @Override
     public String toString() {
