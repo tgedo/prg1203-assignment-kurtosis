@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     static private String info = "                                  ,'\\\r\n" + //
@@ -16,6 +17,7 @@ public class Main {
                     "                                `'                            '-._|"; //TODO add more info
     static Scanner sc = new Scanner(System.in);
     static int playerDecision;
+    static String playerQTE;
     static String choicesMessage = "";
     static String errorMessage = "";
 
@@ -138,6 +140,41 @@ public class Main {
         }
     }
 
-
+    /** Return true if success false if failed, triggerChance point form */
+    public static boolean QTE(double triggerChance){
+        if (triggerChance > Math.random()){
+            sc.nextLine();
+            System.out.println("QTE CHANCE! PRESS ENTER ON SIGNAL!");
+            for (int timer = 0; timer < Math.random()*10;timer++){
+                wait(500);
+                System.out.print("=");
+            }
+            System.out.print("NOW!!!");
+            long minTimeMillis = System.currentTimeMillis() + 10;
+            long maxTimeMillis = System.currentTimeMillis() + 1500;
+            playerQTE = sc.nextLine();
+            if (System.currentTimeMillis() < minTimeMillis){
+                System.out.println("QTE Failed! Too early!");
+                return false;
+            }
+            else if (System.currentTimeMillis() > maxTimeMillis) {
+                System.out.println("QTE Failed! Too late!");
+                return false;
+            }
+            System.out.println("QTE Success!");
+            return true;
+        }
+        return false;
+    }
     
+    private static void wait(int ms){
+    try
+    {
+        Thread.sleep(ms);
+    }
+    catch(InterruptedException ex)
+    {
+        Thread.currentThread().interrupt();
+    }
+}
 }
