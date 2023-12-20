@@ -4,6 +4,12 @@ class ElectricType extends Pokemon {
     }
 
     @Override
+    public String getName() {
+        return ConsoleColours.YELLOW.text + this.name + ConsoleColours.RESET.text;
+    }
+
+
+    @Override
     public String takeDamage(double enemyPower, Type enemyType){
         if (this.getHp() < 0){
             return this.getName() + " has already fainted! STOP!!";

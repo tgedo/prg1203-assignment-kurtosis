@@ -3,6 +3,7 @@ class WaterType extends Pokemon {
         super(name,hp,atk,def,spd,spe,Type.WATER,moveIsSpecial,catchRate);
     }
 
+
     @Override
     public String takeDamage(double enemyPower, Type enemyType){
         if (this.getHp() < 0){
