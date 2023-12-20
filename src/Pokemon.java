@@ -1,6 +1,7 @@
 
 class Pokemon implements Cloneable {
     protected String name = "MissingNo.";
+    protected int maxHP = 33;
     protected int hp = 33;
     protected int atk = 136;
     protected int def = 0;
@@ -17,6 +18,7 @@ class Pokemon implements Cloneable {
     public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, boolean moveIsSpecial,
             double catchRate) {
         this.name = name;
+        this.maxHP = hp;
         this.hp = hp;
         this.atk = atk;
         this.def = def;
@@ -100,26 +102,30 @@ class Pokemon implements Cloneable {
         this.catchRate = catchRate;
     }
 
-    public int dealDamage(Pokemon attacker, Pokemon defender) {
-        // Base damage
-        int enemyPower = attacker.getAtk();
-        // Stat modifiers
-        if (attacker.moveIsSpecial) {
-            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getSpd() + 50)));
-        } else {
-            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getDef() + 50)));
+    public void dealDamage(Pokemon target) {
+        int basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getDef()));
+        if (this.moveIsSpecial) {
+            basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getSpd()));
         }
             // RNG element
-            enemyPower = (int) (enemyPower * (Math.random() * 0.15 + 0.85));
+            double totalPower = basePower * (Math.random() * 0.15 + 0.85);
             // Ensure minimum damage of 1
-            return Math.max(1, enemyPower);
+            System.out.println(this.name + " used 'Attack' on " + target.getName());
+            System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
     }
 
-    public String takeDamage(int enemyPower, Type enemyType){
+    public String takeDamage(double enemyPower, Type enemyType){
+        hp-=enemyPower;
         return enemyPower + " Damage taken!";
     }
     
     public String healHealth(int heal){
+        if(heal > maxHP){
+            hp = maxHP;
+        }
+        else{
+            hp += heal;
+        }
         return "Recovered " + heal + " HP!";
     }
     
@@ -130,6 +136,10 @@ class Pokemon implements Cloneable {
 /**Decrease the pokemon's action value by it's speed. @param speed */
     public void decreaseActionValue(int speed) {
         this.actionValue -= speed;
+    }
+
+    public void resetActionValue(){
+        this.actionValue = 1000;
     }
 
     public Pokemon clone() throws CloneNotSupportedException {
