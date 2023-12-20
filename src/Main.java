@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -26,9 +25,10 @@ public class Main {
         User dummy = new User("Ash Ketchump", "ash123"); 
         dummy.AddPokemonIntoDeck(new ElectricType("Pikachu",66, 35, 44, 43, 33, true, 0.4));
         dummy.AddPokemonIntoDeck(new FireType("Charmander",66, 35, 44, 43, 33, true, 0.4));
-        User player = MainMenu();
-        StartGame(player);
-
+        while (true) {
+            User player = MainMenu();
+            StartGame(player);
+        }
     }
 
     public static User MainMenu() throws CloneNotSupportedException{
@@ -54,11 +54,11 @@ public class Main {
             String loginPass = sc.nextLine();
             
             for(User user : User.userList){
-                System.out.println("Scanning :" + user.getUserName());
+                // System.out.println("Scanning :" + user.getUserName());
                 if(user.getUserName().contains(loginName)){
                     errorMessage = "Password Incorrect!";
                     if(user.getUserPass().equals(loginPass)){
-                        System.out.println("Success! Logging in as " +loginName);
+                        System.out.println("Success! Logging in as " + loginName);
                         return user;
                     }
                 }
@@ -101,11 +101,10 @@ public class Main {
             validateSelection(1, starters.size());
             newUser.AddPokemonIntoDeck(starters.get(playerDecision-1).clone());
 
-            System.out.println(newUser);
             return newUser;
         }
         //Player chooses Leaderboard
-
+        
         //Player chooses Quit
         else{
             return null;
@@ -118,15 +117,15 @@ public class Main {
         
     };
 
-    private static void validateSelection(int min,int max){
+    static void validateSelection(int min,int max){
         while (true) {
             System.out.println(choicesMessage);
             System.out.println(errorMessage);
-            
              try{
                 playerDecision = sc.nextInt();
             } catch(Exception e){
                 errorMessage = "Choose an integer!";
+                sc.nextLine();
                 continue;
             };
             if (playerDecision > max || playerDecision < 1){
