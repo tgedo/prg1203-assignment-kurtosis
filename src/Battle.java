@@ -17,28 +17,13 @@ public class Battle {
         this.field = new Pokemon[]{playerPokemon,playerPokemon2,wild,wild2};
     }
 
-    public int DealDamage(Pokemon attacker, Pokemon defender) {
-        // Base damage
-        int enemyPower = attacker.getAtk();
-        // Stat modifiers
-        if (attacker.moveIsSpecial) {
-            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getSpd() + 50)));
-        } else {
-            enemyPower = (int) (enemyPower * ((attacker.getAtk() + 50) / (defender.getDef() + 50)));
-        }
-            // RNG element
-            enemyPower = (int) (enemyPower * (Math.random() * 0.15 + 0.85));
-            // Ensure minimum damage of 1
-            return Math.max(1, enemyPower);
-    }
-
     public void DecideTurnOrder() {
         while (true){
             // Check turn
             for(Pokemon pokemon : field){
                 pokemon.decreaseActionValue(pokemon.getSpe());
                 if (pokemon.getActionValue() == 0){
-                    pokemon.dealDamage();
+                    pokemon.dealDamage(pokemon, pokemon); //Fix targetting
                 }
             }
         }
@@ -56,7 +41,7 @@ public class Battle {
 
             try(Scanner sc = new Scanner(System.in)){
                 int choice = sc.nextInt();
-                if (!player.getDeck().get(choice-1).equals(playerPokemon)){
+                if (!player.getDeck().get(choice-1).equals(playerPokemon)) { //TODO : FIX 
                     errorMessage = "";
                     return player.getDeck().get(choice-1);
                 }

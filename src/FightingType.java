@@ -1,23 +1,14 @@
-import java.util.Objects;
-
 class FightingType extends Pokemon {
-    public FightingType(){
-        setType("Fighting");
+    public FightingType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.FIGHTING,moveIsSpecial,catchRate);
     }
-    public FightingType(String pid){
-        if(Objects.equals(pid, "Machop")){
-            setName(pid);
-            setHp(103);
-            setAtk(68);
-            setDef(44);
-            setSpd(31);
-            setSpe(31);
-            setMoveIsSpecial(false);
-            setCatchRate(0.33);
-        }
-    }
-    public String takeDamage(int enemyPower, String enemyType){
-        if (enemyType == "Psychic") {
+
+    @Override
+    public String takeDamage(int enemyPower, Type enemyType){
+        if (Type.FIGHTING.strong.contains(enemyType)) {
+            hp -= (int) (enemyPower*0.5);
+            return "The attack is not very effective";
+        } else if (Type.FIGHTING.weak.contains(enemyType)) {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }
@@ -25,5 +16,5 @@ class FightingType extends Pokemon {
             hp -= enemyPower;
             return "The attack is effective!";
         }
-    }
+    }   
 }

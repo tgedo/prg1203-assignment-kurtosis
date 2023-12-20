@@ -1,14 +1,13 @@
-class ElectricType extends Pokemon {
-    public ElectricType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.ELECTRIC,moveIsSpecial,catchRate);
+class WaterType extends Pokemon {
+    public WaterType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.WATER,moveIsSpecial,catchRate);
     }
 
-    @Override
     public String takeDamage(int enemyPower, Type enemyType){
-        if (Type.FIRE.strong.contains(enemyType)) {
+        if (Type.WATER.strong.contains(enemyType)) {
             hp -= (int) (enemyPower*0.5);
             return "The attack is not very effective";
-        } else if (Type.FIRE.weak.contains(enemyType)) {
+        } else if (Type.WATER.weak.contains(enemyType)) {
             hp -= enemyPower*2;
             return "The attack is super effective!";
         }
