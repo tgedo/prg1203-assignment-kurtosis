@@ -33,6 +33,12 @@ public class Battle {
                     continue;
                 }
                 pokemon.decreaseActionValue(pokemon.getSpe());
+                
+                if(pokemon.equals(field[0])|| pokemon.equals(field[1])){
+                    if(Main.QTE(0.01)){
+                        pokemon.decreaseActionValue(1000);
+                    }
+                }
                 if (pokemon.getActionValue() > 0){
                     continue;
                 }
