@@ -44,6 +44,12 @@ public class Catch {
 
     //TODO:write formula
     private void capturePokemon(Pokemon targetPokemon, Pokeball ball){
+        if(Main.QTE(0.1)){
+            this.targetPokemon.healHealth(1000);
+            player.AddPokemonIntoDeck(targetPokemon);
+            System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
+        }
+        
         if(rand.nextInt(1) == 1){
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
