@@ -1,4 +1,6 @@
-class ElectricType extends Pokemon {
+import java.io.Serializable;
+
+class ElectricType extends Pokemon implements Serializable {
     public ElectricType(String name, int hp, int atk, int def, int spd, int spe, Move move, double catchRate){
         super(name,hp,atk,def,spd,spe,Type.ELECTRIC,Move.THUNDERBOLT,catchRate);
     }

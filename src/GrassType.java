@@ -1,4 +1,6 @@
-class GrassType extends Pokemon {
+import java.io.Serializable;
+
+class GrassType extends Pokemon implements Serializable {
     public GrassType(String name, int hp, int atk, int def, int spd, int spe,Move move, double catchRate){
         super(name,hp,atk,def,spd,spe,Type.GRASS,Move.RAZORLEAF,catchRate);
     }

@@ -1,4 +1,6 @@
-class FightingType extends Pokemon {
+import java.io.Serializable;
+
+class FightingType extends Pokemon implements Serializable {
     public FightingType(String name, int hp, int atk, int def, int spd, int spe, Move move, double catchRate){
         super(name,hp,atk,def,spd,spe,Type.FIGHTING,Move.KARATECHOP,catchRate);
     }
