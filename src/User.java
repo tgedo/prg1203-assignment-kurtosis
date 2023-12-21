@@ -43,6 +43,7 @@ public class User implements Serializable {
         Playcount += 1;
     }
 
+
     public ArrayList<Pokemon> getDeck() {
         return deck;
     }
@@ -51,43 +52,7 @@ public class User implements Serializable {
         deck.add(pokemon);
     }
 
-    /*public static void readUsersFromFile() throws IOException {
-        FileReader fileReader = new FileReader("users.txt");
 
-        int currentCharacter;
-        StringBuilder lineBuilder = new StringBuilder();
-        while ((currentCharacter = fileReader.read()) != -1) {
-            char character = (char) currentCharacter;
-            if (character == '\n') {
-                // Process a complete line
-                String line = lineBuilder.toString();
-                String[] userData = line.split(",");
-                String userName = userData[0];
-                String userPass = userData[1];
-
-
-                User user = new User(userName, userPass);
-                userList.add(user);
-
-                lineBuilder = new StringBuilder(); // Reset for the next line
-            } else {
-                lineBuilder.append(character);
-            }
-        }
-
-        fileReader.close();
-    }
-    /*public void addNewUser(User user) throws IOException {
-        User.writeUsersToFile();
-        User.userList.add(user);
-    }*/
-    /*public static void writeUsersToFile() throws IOException {
-        FileWriter fileWriter = new FileWriter("users.txt");
-        for (User user : userList) {
-            fileWriter.write(user.getUserName() + "," + user.getUserPass() + "\n");
-        }
-        fileWriter.close();
-    }*/
 
 
 

@@ -1,8 +1,12 @@
+import java.io.Serial;
 import java.io.Serializable;
 
 class FireType extends Pokemon implements Serializable {
-    public FireType(String name, int hp, int atk, int def, int spd, int spe, Move move, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.FIRE,Move.EMBER,catchRate);
+    @Serial
+    private static final long serialVersionUID = 3549922165660595007L;
+
+    public FireType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.FIRE,Move.EMBER,ZMove.ZFIRE,catchRate);
     }
 
     @Override

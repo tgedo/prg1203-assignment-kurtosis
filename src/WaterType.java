@@ -1,8 +1,12 @@
+import java.io.Serial;
 import java.io.Serializable;
 
-class WaterType extends Pokemon implements Serializable {
-    public WaterType(String name, int hp, int atk, int def, int spd, int spe, Move move, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.WATER,Move.WATERGUN,catchRate);
+class WaterType extends Pokemon implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 8461986472007082943L;
+
+    public WaterType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.WATER,Move.WATERGUN,ZMove.ZWATER,catchRate);
     }
 
 

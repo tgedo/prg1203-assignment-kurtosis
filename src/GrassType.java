@@ -1,8 +1,12 @@
+import java.io.Serial;
 import java.io.Serializable;
 
 class GrassType extends Pokemon implements Serializable {
-    public GrassType(String name, int hp, int atk, int def, int spd, int spe,Move move, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.GRASS,Move.RAZORLEAF,catchRate);
+    @Serial
+    private static final long serialVersionUID = -5437902493174180470L;
+
+    public GrassType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.GRASS,Move.RAZORLEAF,ZMove.ZGRASS,catchRate);
     }
 
     @Override

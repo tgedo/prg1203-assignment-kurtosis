@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,15 +12,18 @@ public class Battle {
     private Scanner sc = new Scanner(System.in);
     private Random rand = new Random();
     private boolean continueBattle = true;
+    private int battleScore= 0;
+
+
 
     public Battle(User player, Pokemon wild, Pokemon wild2) throws CloneNotSupportedException {
         this.player = player;
         this.wild = wild;
+        playerPokemon = ChoosePokemonFromLoadout(player);
+        playerPokemon2 = ChoosePokemonFromLoadout(player);
         System.out.println("A wild " + wild.getName() + " has appeared!");
         this.wild2 = wild2;
         System.out.println("A wild " + wild2.getName() + " has appeared!");
-        playerPokemon = ChoosePokemonFromLoadout(player);
-        playerPokemon2 = ChoosePokemonFromLoadout(player);
         this.field = new Pokemon[]{playerPokemon,playerPokemon2,wild,wild2};
 
         pokemonBattle();
@@ -50,8 +54,12 @@ public class Battle {
                     System.out.println("2 : " + field[3].getName() + field[3].getHp());
                     System.out.println("Pick a pokemon to attack!");
                     Main.validateSelection(1,2);
-                    
+                    if(Main.QTE(0.1)){
+                        pokemon.dealZDamage(field[Main.playerDecision+1]);
+                        battleScore += 100;
+                    }else {
                     pokemon.dealDamage(field[Main.playerDecision+1]);
+                    battleScore += 50;}
                 }
                 //Wild
                 else if (pokemon.equals(field[2]) || pokemon.equals(field[3])){
@@ -67,6 +75,8 @@ public class Battle {
                 }
                 if(checkGameOver() == 2){
                     System.out.println(player.getUserName() + " Won!");
+                    battleScore += 500;
+                    Leaderboard lb = new Leaderboard(player.getUserName(), battleScore);
                     continueBattle = false;
                     System.out.println("1 : " + field[2].getName());
                     System.out.println("2 : " + field[3].getName());

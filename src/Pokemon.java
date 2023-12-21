@@ -1,6 +1,9 @@
+import java.io.Serial;
 import java.io.Serializable;
 
-class Pokemon implements Cloneable, Serializable {
+public class Pokemon implements Cloneable, Serializable {
+    @Serial
+    private static final long serialVersionUID = -129681925816569573L;
     protected String name = "MissingNo.";
     protected int maxHP = 33;
     protected int hp = 33;
@@ -13,11 +16,12 @@ class Pokemon implements Cloneable, Serializable {
 
     protected Type type = Type.NONE;
     protected Move  move = Move.NULLMOVE;
+    protected ZMove zmove = ZMove.ZNULL;
     protected double catchRate = 4;
     protected int actionValue = 1000;
 
 
-    public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, Move move,
+    public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, Move move,ZMove zmove,
             double catchRate) {
         this.name = name;
         this.maxHP = hp;
@@ -28,6 +32,7 @@ class Pokemon implements Cloneable, Serializable {
         this.spe = spe;
         this.type = type;
         this.move = move;
+        this.zmove = zmove;
         this.catchRate = catchRate;
     }
 
@@ -103,16 +108,28 @@ class Pokemon implements Cloneable, Serializable {
     }
 
     public void dealDamage(Pokemon target) {
-        int basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getDef()));
+        int basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
         if (this.move.isSpecial) {
-            basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getSpd()));
+            basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getSpd())));
         }
             // RNG element
-            double totalPower = basePower * (Math.random() * 0.15 + 0.85);
+            double totalPower = basePower + (Math.random() * 0.15 + 0.85);
             // Ensure minimum damage of 1
-            System.out.println(this.name + " used move "+ move.moveName+ " on " + target.getName());
-            System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
+            System.out.println(this.name + " used move "+ this.move.moveName+ " on " + target.getName());
+            System.out.println(target.takeDamage(Math.max(1, totalPower), this.move.type));
     }
+    public void dealZDamage(Pokemon target) {
+        int basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
+        if (this.move.isSpecial) {
+            basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
+        }
+        // RNG element
+        double totalPower = basePower * (Math.random() * 0.15 + 0.85);
+        // Ensure minimum damage of 1
+        System.out.println(this.name + " used move "+ this.zmove.zmoveName+ " on " + target.getName());
+        System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
+    }
+
 
 
     public String takeDamage(double enemyPower, Type enemyType){
