@@ -18,20 +18,20 @@ public class PokemonPool {
 
     //TODO: Change Stats
     private static void addCommonPokemon(){
-        pokemonRate.add(new WaterType("Squirtle", 66, 35, 44, 43, 33, true, 0.4));
-        pokemonRate.add(new FireType("Charmander",66, 35, 44, 43, 33, true, 0.4));
-        pokemonRate.add(new FightingType("Machop",66, 35, 44, 43, 33, true, 0.4));
-        pokemonRate.add(new NormalType("Meowth",66, 35, 44, 43, 33, true, 0.4));
+        pokemonRate.add(new WaterType("Squirtle", 66, 35, 44, 43, 33, Move.WATERGUN, 0.4));
+        pokemonRate.add(new FireType("Charmander",66, 35, 44, 43, 33, Move.EMBER, 0.4));
+        pokemonRate.add(new FightingType("Machop",66, 35, 44, 43, 33, Move.KARATECHOP, 0.4));
+        pokemonRate.add(new NormalType("Meowth",66, 35, 44, 43, 33, Move.SCRATCH, 0.4));
     }
 
     private static void addUncommonPokemon(){
-        pokemonRate.add(new ElectricType("Pikachu",66, 35, 44, 43, 33, true, 0.4));
-        pokemonRate.add(new GhostType("Haunter",66, 35, 44, 43, 33, true, 0.4));
+        pokemonRate.add(new ElectricType("Pikachu",66, 35, 44, 43, 33, Move.THUNDERBOLT, 0.4));
+        pokemonRate.add(new GhostType("Haunter",66, 35, 44, 43, 33, Move.HEX, 0.4));
     }
 
     private static void addRarePokemon(){
-        pokemonRate.add(new PsychicType("Mewtwo",66, 35, 44, 43, 33, true, 0.4));
-        pokemonRate.add(new GrassType("Venusaur",66, 35, 44, 43, 33, true, 0.4));
+        pokemonRate.add(new PsychicType("Mewtwo",66, 35, 44, 43, 33, Move.PSYSHOCK, 0.4));
+        pokemonRate.add(new GrassType("Venusaur",66, 35, 44, 43, 33, Move.RAZORLEAF, 0.4));
     }
 
     /**Generate Pokemon to REFER, make sure to make a clone of the pokemon object */

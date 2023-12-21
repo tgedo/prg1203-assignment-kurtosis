@@ -1,6 +1,6 @@
 class GhostType extends Pokemon {
-    public GhostType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.GHOST,moveIsSpecial,catchRate);
+    public GhostType(String name, int hp, int atk, int def, int spd, int spe,Move move, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.GHOST,Move.HEX,catchRate);
     }
 
     @Override

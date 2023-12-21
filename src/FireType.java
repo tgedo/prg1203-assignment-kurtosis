@@ -1,6 +1,6 @@
 class FireType extends Pokemon {
-    public FireType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.FIRE,moveIsSpecial,catchRate);
+    public FireType(String name, int hp, int atk, int def, int spd, int spe, Move move, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.FIRE,Move.EMBER,catchRate);
     }
 
     @Override

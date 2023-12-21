@@ -23,8 +23,8 @@ public class Main {
         PokemonPool.setPokemonRate(3, 2, 1);
         //Generate test user, remove by submission
         User dummy = new User("Ash Ketchump", "ash123"); 
-        dummy.AddPokemonIntoDeck(new ElectricType("Pikachu",66, 35, 44, 43, 33, true, 0.4));
-        dummy.AddPokemonIntoDeck(new FireType("Charmander",66, 35, 44, 43, 33, true, 0.4));
+        dummy.AddPokemonIntoDeck(new ElectricType("Pikachu",66, 35, 44, 43, 33, Move.THUNDERBOLT, 0.4));
+        dummy.AddPokemonIntoDeck(new FireType("Charmander",66, 35, 44, 43, 33, Move.EMBER, 0.4));
         while (true) {
             User player = MainMenu();
             StartGame(player);
@@ -139,5 +139,5 @@ public class Main {
     }
 
 
-    
+
 }
