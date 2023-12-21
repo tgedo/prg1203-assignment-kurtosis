@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-class Pokemon implements Cloneable {
+class Pokemon implements Cloneable, Serializable {
     protected String name = "MissingNo.";
     protected int maxHP = 33;
     protected int hp = 33;
