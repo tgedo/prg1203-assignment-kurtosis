@@ -1,7 +1,8 @@
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Pokemon implements Cloneable, Serializable {
+
+abstract public class Pokemon implements Cloneable, Serializable {
     @Serial
     private static final long serialVersionUID = -129681925816569573L;
     protected String name = "MissingNo.";
