@@ -56,25 +56,25 @@ public class Main {
 
         sc.nextLine();
         //Player chooses Continue
-        if (playerDecision == 1) {
-            System.out.println(User.userList);
-            while (true) {
-                System.out.println(errorMessage);
-                System.out.println();
-                System.out.println("Attempting login...");
-                System.out.println("Enter a Username: ");
-                String loginName = sc.nextLine();
-                System.out.println("Enter a Password: ");
-                String loginPass = sc.nextLine();
 
-                for (User user : User.userList) {
-                    // System.out.println("Scanning :" + user.getUserName());
-                    if (user.getUserName().contains(loginName)) {
-                        errorMessage = "Password Incorrect!";
-                        if (user.getUserPass().equals(loginPass)) {
-                            System.out.println("Success! Logging in as " + loginName);
-                            return user;
-                        }
+        if (playerDecision == 1){
+           while (true) {
+            System.out.println(errorMessage);
+            System.out.println();
+            System.out.println("Attempting login...");
+            System.out.println("Enter a Username: ");
+            String loginName = sc.nextLine();
+            System.out.println("Enter a Password: ");
+            String loginPass = sc.nextLine();
+            
+            for(User user : User.userList){
+                // System.out.println("Scanning :" + user.getUserName());
+                if(user.getUserName().contains(loginName)){
+                    errorMessage = "Password Incorrect!";
+                    if(user.getUserPass().equals(loginPass)){
+                        System.out.println("Success! Logging in as " + loginName);
+                        errorMessage = "";
+                        return user;
                     }
                 }
                 errorMessage = "No user found!";
