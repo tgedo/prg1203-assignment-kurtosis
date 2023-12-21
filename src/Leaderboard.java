@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
 public class Leaderboard{
@@ -35,6 +34,21 @@ public class Leaderboard{
                 break;
             }
         }
+        
+        Scanner option = new Scanner(System.in);
+        int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
+
+        
     }
 
 }

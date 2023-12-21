@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Catch {
     private User player;
@@ -49,6 +50,19 @@ public class Catch {
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return true;
         }
 
@@ -56,11 +70,40 @@ public class Catch {
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return true;
         }
         else{
             System.out.println("Failed to catch " +targetPokemon.getName()+"!");
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return false;
         }
+        
+        
+
     }
 }

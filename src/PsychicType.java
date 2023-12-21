@@ -10,6 +10,11 @@ class PsychicType extends Pokemon implements Serializable {
     }
 
     @Override
+    public String getName() {
+        return ConsoleColours.PURPLE.text + this.name + ConsoleColours.RESET.text;
+    }
+
+    @Override
     public String takeDamage(double enemyPower, Type enemyType){
         if (this.getHp() < 0){
             return this.getName() + " has already fainted! STOP!!";

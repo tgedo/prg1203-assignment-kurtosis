@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -96,6 +97,7 @@ abstract public class Pokemon implements Cloneable, Serializable {
     public Type getType() {
         return type;
     }
+
     public void setType(Type type) {
         this.type = type;
     }
@@ -114,7 +116,7 @@ abstract public class Pokemon implements Cloneable, Serializable {
             basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getSpd())));
         }
             // RNG element
-            double totalPower = basePower + (Math.random() * 0.15 + 0.85);
+            double totalPower = (basePower/2) + (Math.random() * 0.15 + 0.85);
             // Ensure minimum damage of 1
             System.out.println(this.name + " used move "+ this.move.moveName+ " on " + target.getName());
             System.out.println(target.takeDamage(Math.max(1, totalPower), this.move.type));
@@ -127,11 +129,9 @@ abstract public class Pokemon implements Cloneable, Serializable {
         // RNG element
         double totalPower = basePower * (Math.random() * 0.15 + 0.85);
         // Ensure minimum damage of 1
-        System.out.println(this.name + " used move "+ this.zmove.zmoveName+ " on " + target.getName());
+        System.out.println(this.name + " used its special, Z-move "+ this.zmove.zmoveName + " on " + target.getName());
         System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
     }
-
-
 
     public String takeDamage(double enemyPower, Type enemyType){
         hp -= Math.floor(enemyPower);
@@ -146,6 +146,25 @@ abstract public class Pokemon implements Cloneable, Serializable {
             hp += heal;
         }
         return "Recovered " + heal + " HP!";
+    }
+
+    public void renderHealthBar(){
+        System.out.print("|");
+        double healthPercentage = 0;
+        double maxhealth = this.maxHP;
+        double currenthealth = this.hp;
+        healthPercentage = (currenthealth/maxhealth)*10;
+        System.out.print(ConsoleColours.RED.background);
+        int x = 0;
+        for(; x < healthPercentage; x++) {
+            System.out.print("__");
+        }
+        System.out.print(ConsoleColours.RESET.background);
+        System.out.print(ConsoleColours.WHITE.background);
+        for(; x < 10; x++) {
+            System.out.print("__");
+        }
+        System.out.println(ConsoleColours.RESET.background);
     }
     
     public int getActionValue() {

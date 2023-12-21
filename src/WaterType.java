@@ -8,7 +8,11 @@ class WaterType extends Pokemon implements Serializable{
     public WaterType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
         super(name,hp,atk,def,spd,spe,Type.WATER,Move.WATERGUN,ZMove.ZWATER,catchRate);
     }
-
+    
+    @Override
+    public String getName() {
+        return ConsoleColours.BLUE.text + this.name + ConsoleColours.RESET.text;
+    }
 
     @Override
     public String takeDamage(double enemyPower, Type enemyType){
