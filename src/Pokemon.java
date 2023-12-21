@@ -1,5 +1,5 @@
 
-class Pokemon implements Cloneable {
+abstract class Pokemon implements Cloneable {
     protected String name = "MissingNo.";
     protected int maxHP = 33;
     protected int hp = 33;

@@ -61,6 +61,7 @@ public class Main {
                     errorMessage = "Password Incorrect!";
                     if(user.getUserPass().equals(loginPass)){
                         System.out.println("Success! Logging in as " + loginName);
+                        errorMessage = "";
                         return user;
                     }
                 }
