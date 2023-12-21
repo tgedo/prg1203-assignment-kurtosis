@@ -1,6 +1,8 @@
-class NormalType extends Pokemon {
-    public NormalType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.NORMAL,moveIsSpecial,catchRate);
+import java.io.Serializable;
+
+class NormalType extends Pokemon implements Serializable {
+    public NormalType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove,double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.NORMAL,Move.SCRATCH,ZMove.ZNORMAL,catchRate);
     }
 
     @Override

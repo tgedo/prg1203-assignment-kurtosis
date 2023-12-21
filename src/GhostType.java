@@ -1,6 +1,12 @@
-class GhostType extends Pokemon {
-    public GhostType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.GHOST,moveIsSpecial,catchRate);
+import java.io.Serial;
+import java.io.Serializable;
+
+class GhostType extends Pokemon implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1431327788388851457L;
+
+    public GhostType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zmove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.GHOST,Move.HEX,ZMove.ZGHOST,catchRate);
     }
 
     @Override

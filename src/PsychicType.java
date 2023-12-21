@@ -1,6 +1,12 @@
-class PsychicType extends Pokemon {
-    public PsychicType(String name, int hp, int atk, int def, int spd, int spe, boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.PSYCHIC,moveIsSpecial,catchRate);
+import java.io.Serial;
+import java.io.Serializable;
+
+class PsychicType extends Pokemon implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 5548433727549265126L;
+
+    public PsychicType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.PSYCHIC,Move.PSYSHOCK,ZMove.ZPSY,catchRate);
     }
 
     @Override

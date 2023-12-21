@@ -1,6 +1,12 @@
-class GrassType extends Pokemon {
-    public GrassType(String name, int hp, int atk, int def, int spd, int spe,boolean moveIsSpecial, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.GRASS,moveIsSpecial,catchRate);
+import java.io.Serial;
+import java.io.Serializable;
+
+class GrassType extends Pokemon implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -5437902493174180470L;
+
+    public GrassType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.GRASS,Move.RAZORLEAF,ZMove.ZGRASS,catchRate);
     }
 
     @Override

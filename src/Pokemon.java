@@ -1,5 +1,10 @@
+import java.io.Serial;
+import java.io.Serializable;
 
-abstract class Pokemon implements Cloneable {
+
+abstract public class Pokemon implements Cloneable, Serializable {
+    @Serial
+    private static final long serialVersionUID = -129681925816569573L;
     protected String name = "MissingNo.";
     protected int maxHP = 33;
     protected int hp = 33;
@@ -9,13 +14,15 @@ abstract class Pokemon implements Cloneable {
     protected int spd = 6; 
     /** Pokemon Speed Stat */
     protected int spe = 29;
-    protected Type type = Type.NONE; 
-    protected boolean moveIsSpecial = false;
+
+    protected Type type = Type.NONE;
+    protected Move  move = Move.NULLMOVE;
+    protected ZMove zmove = ZMove.ZNULL;
     protected double catchRate = 4;
     protected int actionValue = 1000;
 
 
-    public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, boolean moveIsSpecial,
+    public Pokemon(String name, int hp, int atk, int def, int spd, int spe, Type type, Move move,ZMove zmove,
             double catchRate) {
         this.name = name;
         this.maxHP = hp;
@@ -25,7 +32,8 @@ abstract class Pokemon implements Cloneable {
         this.spd = spd;
         this.spe = spe;
         this.type = type;
-        this.moveIsSpecial = moveIsSpecial;
+        this.move = move;
+        this.zmove = zmove;
         this.catchRate = catchRate;
     }
 
@@ -79,12 +87,10 @@ abstract class Pokemon implements Cloneable {
         this.spe = spe;
     }
 
-    public boolean isMoveIsSpecial() {
-        return moveIsSpecial;
-    }
+    public Move getMove(Move move){return move;}
 
-    public void setMoveIsSpecial(boolean moveIsSpecial) {
-        this.moveIsSpecial = moveIsSpecial;
+    public void setMove(Move move) {
+        this.move = move;
     }
 
     public Type getType() {
@@ -103,20 +109,33 @@ abstract class Pokemon implements Cloneable {
     }
 
     public void dealDamage(Pokemon target) {
-        int basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getDef()));
-        if (this.moveIsSpecial) {
-            basePower = this.getAtk() * ((this.getAtk() + 50) / (target.getSpd()));
+        int basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
+        if (this.move.isSpecial) {
+            basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getSpd())));
         }
             // RNG element
-            double totalPower = basePower * (Math.random() * 0.15 + 0.85);
+            double totalPower = basePower + (Math.random() * 0.15 + 0.85);
             // Ensure minimum damage of 1
-            System.out.println(this.name + " used 'Attack' on " + target.getName());
-            System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
+            System.out.println(this.name + " used move "+ this.move.moveName+ " on " + target.getName());
+            System.out.println(target.takeDamage(Math.max(1, totalPower), this.move.type));
+    }
+    public void dealZDamage(Pokemon target) {
+        int basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
+        if (this.move.isSpecial) {
+            basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
+        }
+        // RNG element
+        double totalPower = basePower * (Math.random() * 0.15 + 0.85);
+        // Ensure minimum damage of 1
+        System.out.println(this.name + " used move "+ this.zmove.zmoveName+ " on " + target.getName());
+        System.out.println(target.takeDamage(Math.max(1, totalPower), this.getType()));
     }
 
+
+
     public String takeDamage(double enemyPower, Type enemyType){
-        hp-=enemyPower;
-        return enemyPower + " Damage taken!";
+        hp -= Math.floor(enemyPower);
+        return Math.floor(enemyPower) + " Damage taken!";
     }
     
     public String healHealth(int heal){
@@ -155,7 +174,7 @@ abstract class Pokemon implements Cloneable {
                 ", def=" + def +
                 ", spd=" + spd +
                 ", spe=" + spe +
-                ", moveSpecial=" + moveIsSpecial +
+                ", moveSpecial=" + move.isSpecial +
                 ", catchRate=" + catchRate +
                 '}';
     }
