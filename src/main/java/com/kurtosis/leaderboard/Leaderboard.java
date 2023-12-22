@@ -1,5 +1,6 @@
-package com.kurtosis;
+package com.kurtosis.leaderboard;
 import java.util.*;
+
 public class Leaderboard{
     public static ArrayList<Leaderboard> userScores = new ArrayList<Leaderboard>();
     private int scores = 0;

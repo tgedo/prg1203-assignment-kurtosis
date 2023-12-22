@@ -1,5 +1,9 @@
-package com.kurtosis;
+package com.kurtosis.pokemon;
 import java.io.Serializable;
+
+import com.kurtosis.constants.Move;
+import com.kurtosis.constants.Type;
+import com.kurtosis.constants.ZMove;
 
 class NormalType extends Pokemon implements Serializable {
     public NormalType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove,double catchRate){

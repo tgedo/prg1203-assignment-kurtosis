@@ -1,4 +1,5 @@
-package com.kurtosis;
+package com.kurtosis.constants;
+
 public enum Move {
     SCRATCH,
     RAZORLEAF,
@@ -10,10 +11,10 @@ public enum Move {
     KARATECHOP,
     NULLMOVE;
 
-    Type type;
-    String moveName;
-    int power;
-    boolean isSpecial;
+    public Type type;
+    public String moveName;
+    public int power;
+    public boolean isSpecial;
     static {
         SCRATCH.type = Type.NORMAL;
         SCRATCH.power = 30;

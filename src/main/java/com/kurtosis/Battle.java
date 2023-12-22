@@ -1,8 +1,9 @@
 package com.kurtosis;
-import java.io.Console;
-import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
+
+import com.kurtosis.leaderboard.Leaderboard;
+import com.kurtosis.pokemon.Pokemon;
 
 public class Battle {
     private User player;

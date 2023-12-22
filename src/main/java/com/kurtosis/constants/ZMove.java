@@ -1,4 +1,5 @@
-package com.kurtosis;
+package com.kurtosis.constants;
+
 public enum ZMove {
     ZNORMAL,
     ZGRASS,
@@ -9,10 +10,10 @@ public enum ZMove {
     ZPSY,
     ZFIGHT,
     ZNULL;
-        Type type;
-        String zmoveName;
-        int power;
-        boolean isSpecial;
+        public Type type;
+        public String zmoveName;
+        public int power;
+        public boolean isSpecial;
         static {
             ZNORMAL.type = Type.NORMAL;
             ZNORMAL.power = 200;

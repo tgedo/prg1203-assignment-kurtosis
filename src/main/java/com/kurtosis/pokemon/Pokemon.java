@@ -1,7 +1,11 @@
-package com.kurtosis;
-import java.io.Console;
+package com.kurtosis.pokemon;
 import java.io.Serial;
 import java.io.Serializable;
+
+import com.kurtosis.constants.ConsoleColours;
+import com.kurtosis.constants.Move;
+import com.kurtosis.constants.Type;
+import com.kurtosis.constants.ZMove;
 
 
 abstract public class Pokemon implements Cloneable, Serializable {

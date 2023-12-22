@@ -1,5 +1,4 @@
-package com.kurtosis;
-import java.time.Year;
+package com.kurtosis.constants;
 
 public enum ConsoleColours {
     BLACK,
@@ -12,7 +11,8 @@ public enum ConsoleColours {
     WHITE,
     RESET;
 
-    String text,background;
+    public String text;
+    public String background;
     static{
         BLACK.text = "\u001B[30m";
         BLACK.background = "\u001B[40m";

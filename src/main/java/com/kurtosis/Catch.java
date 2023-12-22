@@ -1,7 +1,8 @@
 package com.kurtosis;
-import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
+
+import com.kurtosis.pokemon.Pokemon;
 
 public class Catch {
     private User player;

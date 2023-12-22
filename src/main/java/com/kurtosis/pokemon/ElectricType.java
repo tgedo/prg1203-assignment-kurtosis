@@ -1,6 +1,11 @@
-package com.kurtosis;
+package com.kurtosis.pokemon;
 import java.io.Serial;
 import java.io.Serializable;
+
+import com.kurtosis.constants.ConsoleColours;
+import com.kurtosis.constants.Move;
+import com.kurtosis.constants.Type;
+import com.kurtosis.constants.ZMove;
 
 class ElectricType extends Pokemon implements Serializable {
     @Serial
@@ -21,7 +26,16 @@ class ElectricType extends Pokemon implements Serializable {
         if (this.getHp() < 0){
             return this.getName() + " has already fainted! STOP!!";
         }
-        hp -= enemyPower;
-        return "The attack is effective!";
-    }   
+        if (Type.ELECTRIC.strong.contains(enemyType)) {
+            hp -= enemyPower*0.5;
+            return "The attack is not very effective. \n " +this.getName() + "received " + (enemyPower*0.5) + " damage." ;
+        } else if (Type.ELECTRIC.weak.contains(enemyType)) {
+            hp -= enemyPower*2;
+            return "The attack is super effective! \n" + (enemyPower*2) + " damage received!" ;
+        }
+        else {
+            hp -= enemyPower;
+            return "The attack is effective!";
+        }
+    } 
 }

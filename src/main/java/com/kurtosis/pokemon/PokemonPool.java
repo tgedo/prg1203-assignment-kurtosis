@@ -1,6 +1,9 @@
-package com.kurtosis;
+package com.kurtosis.pokemon;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.kurtosis.constants.Move;
+import com.kurtosis.constants.ZMove;
 
 public class PokemonPool {
     public static ArrayList<Pokemon> pokemonRate = new ArrayList<Pokemon>();

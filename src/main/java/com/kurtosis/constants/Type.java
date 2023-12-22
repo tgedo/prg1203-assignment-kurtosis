@@ -1,4 +1,4 @@
-package com.kurtosis;
+package com.kurtosis.constants;
 import java.util.List;
 
 public enum Type {

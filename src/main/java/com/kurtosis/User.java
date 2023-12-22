@@ -2,7 +2,12 @@ package com.kurtosis;
 import java.io.*;
 import java.util.ArrayList;
 
+import com.kurtosis.pokemon.Pokemon;
+
 public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 3549922165660595007L;
+    
     public static ArrayList<User> userList = new ArrayList<User>();
     private static final String USERS_FILE = "users.ser";
     private int userID;

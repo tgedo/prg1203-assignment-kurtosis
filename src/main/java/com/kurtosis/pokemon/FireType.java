@@ -1,6 +1,11 @@
-package com.kurtosis;
+package com.kurtosis.pokemon;
 import java.io.Serial;
 import java.io.Serializable;
+
+import com.kurtosis.constants.ConsoleColours;
+import com.kurtosis.constants.Move;
+import com.kurtosis.constants.Type;
+import com.kurtosis.constants.ZMove;
 
 class FireType extends Pokemon implements Serializable {
     @Serial

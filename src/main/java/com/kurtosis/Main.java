@@ -1,10 +1,12 @@
 package com.kurtosis;
-import java.io.Console;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+
+import com.kurtosis.constants.ConsoleColours;
+import com.kurtosis.leaderboard.Leaderboard;
+import com.kurtosis.pokemon.Pokemon;
+import com.kurtosis.pokemon.PokemonPool;
 
 public class Main {
     static private String info = ConsoleColours.YELLOW.text + "                                  ,'\\\r\n" + //
@@ -28,10 +30,6 @@ public class Main {
     public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
         User.deserializeUsers("users.ser");
         PokemonPool.setPokemonRate(3, 2, 1);
-        //Generate test user, remove by submission
-        User dummy = new User("Ash Ketchump", "ash123");
-        dummy.AddPokemonIntoDeck(new ElectricType("Pikachu", 66, 35, 44, 43, 33, Move.THUNDERBOLT, ZMove.ZELEC,0.4));
-        dummy.AddPokemonIntoDeck(new FireType("Charmander", 66, 35, 44, 43, 33, Move.EMBER,ZMove.ZFIRE ,0.4));
         while (true) {
             User player = MainMenu();
             try{
