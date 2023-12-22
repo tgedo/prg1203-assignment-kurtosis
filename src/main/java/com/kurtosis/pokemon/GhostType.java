@@ -26,7 +26,7 @@ class GhostType extends Pokemon{
         }
         if (Type.GHOST.weak.contains(enemyType)) {
             hp -= enemyPower*2;
-            return "The attack is super effective! \n" + (enemyPower*2) + " damage received!" ;
+            return "The attack is super effective! \n" + Math.round(enemyPower*2) + " damage received!" ;
         } else if (Type.GHOST.noEffect.contains(enemyType)) {
             hp -= (int) (enemyPower*0.1);
             return "The attack is ineffective";

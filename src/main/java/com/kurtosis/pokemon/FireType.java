@@ -28,10 +28,10 @@ class FireType extends Pokemon{
         
         if (Type.FIRE.strong.contains(enemyType)) {
             hp -= (int) (enemyPower*0.5);
-            return "The attack is not very effective. \n " + this.getName() + " received " + (enemyPower*0.5) + " damage." ;
+            return "The attack is not very effective. \n " + this.getName() + " received " + Math.round(enemyPower*0.5) + " damage." ;
         } else if (Type.FIRE.weak.contains(enemyType)) {
             hp -= enemyPower*2;
-            return "The attack is super effective! \n" + (enemyPower*2) + " damage received!" ;
+            return "The attack is super effective! \n" + Math.round(enemyPower*2) + " damage received!" ;
         }
         else {
             hp -= enemyPower;
