@@ -1,56 +1,30 @@
 package com.kurtosis.visual;
 
 import com.kurtosis.constants.ConsoleColours;
+import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
 
 public interface Renderer {
-    public static void pokeopen(){
-        String pokeball1 = "────────▄███████████▄────────\r\n" + //
-                "─────▄███▓▓▓▓▓▓▓▓▓▓▓███▄─────\r\n" + //
-                "────███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███────\r\n" + //
-                "───██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██───\r\n" + //
-                "──██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██──\r\n" + //
-                "─██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██─\r\n" + //
-                "██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██\r\n" + //
-                "██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██\r\n" + //
-                "██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██\r\n" + //
-                "███████████░░███░░███████████\r\n" + //
-                "██░░░░░░░██░░███░░██░░░░░░░██\r\n" + //
-                "██░░░░░░░░██░░░░░██░░░░░░░░██\r\n" + //
-                "██░░░░░░░░░███████░░░░░░░░░██\r\n" + //
-                "─██░░░░░░░░░░░░░░░░░░░░░░░██─\r\n" + //
-                "──██░░░░░░░░░░░░░░░░░░░░░██──\r\n" + //
-                "───██░░░░░░░░░░░░░░░░░░░██───\r\n" + //
-                "────███░░░░░░░░░░░░░░░███────\r\n" + //
-                "─────▀███░░░░░░░░░░░███▀─────\r\n" + //
-                "────────▀███████████▀────────";
-        System.out.println(pokeball1);
-        System.out.println("===========================================");
-    }
-
     public static void pokeclose(){
-        String pokeball2 = "      ,\r\n" + //
+        String pokeball2 = ConsoleColours.YELLOW.text + "      ,\r\n" + //
                 "   \\  :  /\r\n" + //
                 "`. __/ \\__ .'\r\n" + //
                 "_ _\\     /_ _\r\n" + //
                 "   /_   _\\\r\n" + //
                 " .'  \\ /  `.\r\n" + //
                 "   /  :  \\    \r\n" + //
-                "      '";
+                "      '" + ConsoleColours.RESET.text;
         System.out.println(pokeball2);
-        System.out.println("===========================================");
+        System.out.println(ConsoleColours.RED.text + "===========================================" + ConsoleColours.RESET.text);
     }
 
-    public static void wait(int ms){
-    try
-    {
-        Thread.sleep(ms);
+    public static void capturing(){
+        System.out.print("Catching.");
+        Helper.wait(500);
+        System.out.print(".");
+        Helper.wait(500);
+        System.out.println(".");
     }
-    catch(InterruptedException ex)
-    {
-        Thread.currentThread().interrupt();
-    }
-}
 
     public static void renderHealthBar(Pokemon pokemon){
         System.out.print("|");

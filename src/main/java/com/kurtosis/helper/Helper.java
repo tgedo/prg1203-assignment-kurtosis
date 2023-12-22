@@ -1,6 +1,9 @@
 package com.kurtosis.helper;
 
+import java.io.Console;
+
 import com.kurtosis.Main;
+import com.kurtosis.constants.ConsoleColours;
 
 public interface Helper {
     public static void validateSelection(int min,int max){
@@ -28,21 +31,21 @@ public interface Helper {
     public static boolean QTE(double triggerChance){
         if (triggerChance > Math.random()){
             Main.sc.nextLine();
-            System.out.println("QTE CHANCE! PRESS ENTER ON SIGNAL!");
+            System.out.println(ConsoleColours.CYAN.text + "QTE CHANCE! PRESS ENTER ON SIGNAL!" + ConsoleColours.CYAN.text);
             countDown(500, true);
-            System.out.print("NOW!!!");
+            System.out.print(ConsoleColours.YELLOW.text + "NOW!!!" + ConsoleColours.RESET.text);
             long minTimeMillis = System.currentTimeMillis() + 10;
             long maxTimeMillis = System.currentTimeMillis() + 1500;
             Main.playerQTE = Main.sc.nextLine();
             if (System.currentTimeMillis() < minTimeMillis){
-                System.out.println("QTE Failed! Too early!");
+                System.out.println(ConsoleColours.RED.text + "QTE Failed! Too early!" + ConsoleColours.RESET.text);
                 return false;
             }
             else if (System.currentTimeMillis() > maxTimeMillis) {
-                System.out.println("QTE Failed! Too late!");
+                System.out.println(ConsoleColours.RED.text + "QTE Failed! Too late!" + ConsoleColours.RESET.text);
                 return false;
             }
-            System.out.println("QTE Success!");
+            System.out.println(ConsoleColours.GREEN.text + "QTE Success!" + ConsoleColours.RESET.text);
             return true;
         }
         return false;
@@ -52,18 +55,18 @@ public interface Helper {
         if (random = true){
             for (int timer = 0; timer < Math.random()*10;timer++){
                 wait(delay);
-                System.out.print("=");
+                System.out.print(ConsoleColours.RED.text + "=" + ConsoleColours.RESET.text);
             }
         }
         else{
             for (int timer = 0; timer < 10;timer++){
                 wait(delay);
-                System.out.print("=");
+                System.out.print(ConsoleColours.RED.text + "=" + ConsoleColours.RESET.text);
             }
         }
     }
 
-    static void wait(int ms){
+    public static void wait(int ms){
     try
     {
         Thread.sleep(ms);
