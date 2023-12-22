@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -5,7 +6,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    static private String info = "                                  ,'\\\r\n" + //
+    static private String info = ConsoleColours.YELLOW.text + "                                  ,'\\\r\n" + //
             "    _.----.        ____         ,'  _\\   ___    ___     ____\r\n" + //
             "_,-'       `.     |    |  /`.   \\,-'    |   \\  /   |   |    \\  |`.\r\n" + //
             "\\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |\r\n" + //
@@ -16,7 +17,7 @@ public class Main {
             "      \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |\r\n" + //
             "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\r\n" + //
             "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\r\n" + //
-            "                                `'                            '-._|"; //TODO add more info
+            "                                `'                            '-._|" + ConsoleColours.RESET.text; //TODO add more info
     static Scanner sc = new Scanner(System.in);
     static int playerDecision;
     static String playerQTE;
@@ -45,18 +46,21 @@ public class Main {
     }
 
     public static User MainMenu() throws CloneNotSupportedException, IOException, ClassNotFoundException {
-        String[] options = {"Continue", "New", "Leaderboard", "Quit"};
+        String[] options = {ConsoleColours.GREEN.text + "Continue" + ConsoleColours.RESET.background, ConsoleColours.YELLOW.text + "New" + ConsoleColours.RESET.text , ConsoleColours.CYAN.text + "Leaderboard" + ConsoleColours.RESET.text, ConsoleColours.RED.text + "Quit" + ConsoleColours.RESET.text};
         System.out.println(info);
+        
 
         for (int choice = 1; choice <= options.length; choice++) {
             choicesMessage += (choice + " : " + options[choice - 1] + "\n");
         }
+
         choicesMessage += ("\n Choose an option!");
         validateSelection(1, options.length);
 
         sc.nextLine();
+        
         //Player chooses Continue
-
+        System.out.println(ConsoleColours.RESET.background);
         if (playerDecision == 1){
            while (true) {
             System.out.println(errorMessage);
@@ -66,7 +70,7 @@ public class Main {
             String loginName = sc.nextLine();
             System.out.println("Enter a Password: ");
             String loginPass = sc.nextLine();
-            
+        
             for(User user : User.userList){
                 // System.out.println("Scanning :" + user.getUserName());
                 if(user.getUserName().contains(loginName)){
@@ -81,6 +85,7 @@ public class Main {
                 continue;
             }
         }
+    }
 
         //Player chooses New
         else if (playerDecision == 2) {
@@ -113,7 +118,6 @@ public class Main {
             choicesMessage += ("\n Pick a starter!");
             validateSelection(1, starters.size());
             newUser.AddPokemonIntoDeck(starters.get(playerDecision - 1).clone());
-
             return newUser;
         } else if (playerDecision == 3) {
             Leaderboard.displayLeaderboard();
@@ -128,7 +132,6 @@ public class Main {
 
     public static void StartGame(User player) throws CloneNotSupportedException{
         new Battle(player, PokemonPool.referencePokemon().clone(), PokemonPool.referencePokemon().clone());
-        
     };
 
     static void validateSelection(int min,int max){

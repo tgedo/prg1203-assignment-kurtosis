@@ -10,6 +10,11 @@ class FightingType extends Pokemon implements Serializable {
     }
 
     @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
     public String takeDamage(double enemyPower, Type enemyType){
         if (this.getHp() < 0){
             return this.getName() + " has already fainted! STOP!!";

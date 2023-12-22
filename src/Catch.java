@@ -1,12 +1,11 @@
 import java.io.Serializable;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Catch {
     private User player;
     private Pokemon targetPokemon;
     private Random rand = new Random();
-
-
     private enum Pokeball{
         POKEBALL,
         SUPERBALL,
@@ -19,9 +18,7 @@ public class Catch {
             ULTRABALL.rate = 2;
             MASTERBALL.rate = 1000;
         }
-    }
-
-    private Pokeball rolledBall = ballRNG();
+    }  
 
     public Catch(User player, Pokemon targetPokemon) throws CloneNotSupportedException{
         this.player = player;
@@ -47,31 +44,64 @@ public class Catch {
         }
     }
 
-    private boolean successfulCapture(){
-        double chance = rolledBall.rate*targetPokemon.catchRate;
-        double rngcheck = Math.round(rand.nextDouble()*10.0) /10.0;
-        return chance >= rngcheck;
-    }
-
     //TODO:write formula
     private boolean capturePokemon(Pokemon targetPokemon, Pokeball ball){
         if(Main.QTE(0.1)){
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return true;
         }
-        
-        if(successfulCapture()){
+
+        if(rand.nextInt(2) == 1){
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
-            System.out.println("Ball rate was " + rolledBall.rate);
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
 
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
+            return true;
         }
         else{
             System.out.println("Failed to catch " +targetPokemon.getName()+"!");
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return false;
         }
+
     }
 }

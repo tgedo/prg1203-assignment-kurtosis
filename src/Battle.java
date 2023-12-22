@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
@@ -41,23 +42,33 @@ public class Battle {
                 if(pokemon.equals(field[0])|| pokemon.equals(field[1])){
                     if(Main.QTE(0.01)){
                         pokemon.decreaseActionValue(1000);
+                    } 
+                    else if(0.1 > Math.random()) {
+                        System.out.println("Random event is usable.");
+                        pokemon.decreaseActionValue(1000);
                     }
                 }
                 if (pokemon.getActionValue() > 0){
                     continue;
                 }
                 pokemon.resetActionValue();
-                System.out.println("\n" + pokemon.getName()+pokemon.getHp() + " is taking their turn!");
+                System.out.println("\n" + pokemon.getName() + ": "  + "HP = " + pokemon.getHp() + " is taking their turn!");
+                pokemon.renderHealthBar();
                 //Player
                 if (pokemon.equals(field[0]) || pokemon.equals(field[1])) {
-                    System.out.println("1 : " + field[2].getName() + field[2].getHp());
-                    System.out.println("2 : " + field[3].getName() + field[3].getHp());
+                    System.out.println("1 : " + field[2].getName() + ": HP= " + field[2].getHp());
+                    field[2].renderHealthBar();
+                    System.out.println("2 : " + field[3].getName() + ": HP= " + field[3].getHp());
+                    field[3].renderHealthBar();
                     System.out.println("Pick a pokemon to attack!");
                     Main.validateSelection(1,2);
                     if(Main.QTE(0.1)){
                         pokemon.dealZDamage(field[Main.playerDecision+1]);
                         battleScore += 100;
-                    }else {
+                    } else if(0.1 > Math.random()) {
+                            System.out.println("Random event is usable.");
+                            pokemon.decreaseActionValue(1000);
+                    } else {
                     pokemon.dealDamage(field[Main.playerDecision+1]);
                     battleScore += 50;}
                 }
@@ -82,7 +93,7 @@ public class Battle {
                     System.out.println("2 : " + field[3].getName());
                     System.out.println("Pick a pokemon to catch!");
                     Main.validateSelection(1,2);
-                    Catch idontknowwhattonamethis = new Catch(player, field[Main.playerDecision+1]);
+                    Catch wildPokemon = new Catch(player, field[Main.playerDecision+1]);
                     break;
                 }
                 else if(checkGameOver() == 1){
