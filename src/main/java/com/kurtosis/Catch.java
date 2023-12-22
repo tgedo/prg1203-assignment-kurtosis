@@ -1,6 +1,5 @@
 package com.kurtosis;
 import java.util.Random;
-import java.util.Scanner;
 
 import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
@@ -19,9 +18,17 @@ public class Catch implements Helper{
         capturePokemon(targetPokemon, playerBall);
     }
 
-     //TODO : redesign, boring
     private Pokeball ballRNG(){
+        System.out.println(" Roll for a ball! ");
         int RNGBall = rand.nextInt(10);
+        if(0.1 > Math.random()) {
+            System.out.println("RANDOM EVENT: item 'Name' is used!");
+            System.out.println("'Name' : Increases luck in rolling for pokeballs!");
+            if(RNGBall >2){
+                RNGBall -= 2;
+            }
+        }
+
         if (RNGBall == 0){
             return Pokeball.MASTERBALL;
         }
@@ -37,23 +44,12 @@ public class Catch implements Helper{
     }
 
     private boolean capturePokemon(Pokemon targetPokemon, Pokeball ball){
+        System.out.println("You got a " + ball.name + " !");
         if(Helper.QTE(0.1)){
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
-            Scanner option = new Scanner(System.in);
-            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
-            int choice = option.nextInt();
-
-        if (choice == 0){
-            System.exit(0);
-        } 
-        else if (choice == 1) {
-            ;
-        }
-        else{
-            System.out.println("Enter '0' or '1' only.");
-        }
+            Helper.checkExit();
             return true;
         }
 
@@ -61,38 +57,13 @@ public class Catch implements Helper{
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
-            Scanner option = new Scanner(System.in);
-            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
-            int choice = option.nextInt();
-
-        if (choice == 0){
-            System.exit(0);
-        } 
-        else if (choice == 1) {
-            ;
-        }
-        else{
-            System.out.println("Enter '0' or '1' only.");
-        }
+            Helper.checkExit();
             return true;
         }
         else{
             System.out.println("Failed to catch " +targetPokemon.getName()+"!");
-            Scanner option = new Scanner(System.in);
-            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
-            int choice = option.nextInt();
-
-        if (choice == 0){
-            System.exit(0);
-        } 
-        else if (choice == 1) {
-            ;
-        }
-        else{
-            System.out.println("Enter '0' or '1' only.");
-        }
+            Helper.checkExit();
             return false;
         }
-
     }
 }
