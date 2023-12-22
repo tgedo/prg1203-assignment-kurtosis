@@ -1,7 +1,6 @@
 package com.kurtosis.helper;
+import java.util.Scanner;
 
-
-import java.io.Console;
 import com.kurtosis.Main;
 import com.kurtosis.constants.ConsoleColours;
 
@@ -15,6 +14,7 @@ public interface Helper {
             } catch(Exception e){
                 Main.errorMessage = "Choose an integer!";
                 Main.sc.nextLine();
+                
                 continue;
             };
             if (Main.playerDecision > max || Main.playerDecision < 1){
@@ -79,10 +79,9 @@ public interface Helper {
 
     public static void checkExit(){
         int choice = 1;
-        try(Scanner option = new Scanner(System.in)){
-            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
-            choice = option.nextInt();
-       }
+        Scanner option = new Scanner(System.in);
+        System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+        choice = option.nextInt();
         if (choice == 0){
             System.exit(0);
         } 

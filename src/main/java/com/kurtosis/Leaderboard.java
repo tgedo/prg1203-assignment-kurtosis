@@ -37,7 +37,6 @@ public class Leaderboard{
                 break;
             }
         }
-        
         Helper.checkExit();
     }
 
