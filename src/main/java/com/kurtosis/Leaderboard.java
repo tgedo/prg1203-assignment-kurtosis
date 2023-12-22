@@ -1,6 +1,8 @@
 package com.kurtosis;
 import java.util.*;
 
+import com.kurtosis.helper.Helper;
+
 public class Leaderboard{
     public static ArrayList<Leaderboard> userScores = new ArrayList<Leaderboard>();
     private int scores = 0;
@@ -36,22 +38,8 @@ public class Leaderboard{
             }
         }
         
-        Scanner option = new Scanner(System.in);
-        int choice = option.nextInt();
-
-        if (choice == 0){
-            System.exit(0);
-        } 
-        else if (choice == 1) {
-            ;
-        }
-        else{
-            System.out.println("Enter '0' or '1' only.");
-        }
-
-        
+        Helper.checkExit();
     }
-
 }
 
 
