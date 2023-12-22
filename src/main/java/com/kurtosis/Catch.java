@@ -3,6 +3,7 @@ import java.util.Random;
 
 import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
+import com.kurtosis.constants.ConsoleColours;
 import com.kurtosis.constants.Pokeball;
 import com.kurtosis.visual.Renderer;
 
@@ -43,39 +44,74 @@ public class Catch implements Helper{
             return Pokeball.POKEBALL;
         }
     }
-
+    
     private boolean capturePokemon(Pokemon targetPokemon, Pokeball ball){
         System.out.println("You got a " + ball.name + " !");
         if(Helper.QTE(0.1)){
-            Renderer.wait(500);
-            Renderer.pokeopen();
+            Renderer.capturing();
+            System.out.println(ConsoleColours.RED.text + "===========================================" + ConsoleColours.RESET.text);
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             Renderer.pokeclose();
-            System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
-            Helper.checkExit();
+            Helper.countDown(500, false);
+            System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!" + ConsoleColours.RED.text + "======" + ConsoleColours.RED.text);
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return true;
         }
 
         if(rand.nextInt(2) == 1){
-            Renderer.wait(500);
-            Renderer.pokeopen();
+            Renderer.capturing();
+            System.out.println(ConsoleColours.RED.text + "===========================================" + ConsoleColours.RESET.text);
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
             Renderer.pokeclose();
-            System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
-            Helper.checkExit();
+            Helper.countDown(500, false);
+            System.out.println("Gotcha! " + targetPokemon.getName() + " captured!" + ConsoleColours.RED.text + "======" + ConsoleColours.RESET.text);
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return true;
         }
         else{
-            System.out.print("Catching.");
-            Renderer.wait(1000);
-            System.out.print(".");
-            Renderer.wait(1000);
-            System.out.println(".");
-            System.out.println("===========================================");
-            System.out.println("Failed to catch " +targetPokemon.getName()+"!");
-            Helper.checkExit();
+            Renderer.capturing();
+            System.out.println(ConsoleColours.RED.text + "===========================================" + ConsoleColours.RESET.text);
+            Helper.countDown(500, false);
+            System.out.println("Failed to catch " +targetPokemon.getName()+"!" + ConsoleColours.RED.text + "======" + ConsoleColours.RESET.text);
+            Scanner option = new Scanner(System.in);
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            int choice = option.nextInt();
+
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
             return false;
         }
     }
