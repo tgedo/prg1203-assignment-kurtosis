@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
+import com.kurtosis.constants.Pokeball;
 
 public class Catch implements Helper{
     private User player;

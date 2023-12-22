@@ -1,6 +1,6 @@
 package com.kurtosis.constants;
 
-    enum Pokeball{
+    public enum Pokeball{
         POKEBALL,
         SUPERBALL,
         ULTRABALL,
