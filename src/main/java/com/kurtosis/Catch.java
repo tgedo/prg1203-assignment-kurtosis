@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
 import com.kurtosis.constants.Pokeball;
+import com.kurtosis.visual.Renderer;
 
 public class Catch implements Helper{
     private User player;
@@ -38,8 +39,11 @@ public class Catch implements Helper{
 
     private boolean capturePokemon(Pokemon targetPokemon, Pokeball ball){
         if(Helper.QTE(0.1)){
+            Renderer.wait(500);
+            Renderer.pokeopen();
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
+            Renderer.pokeclose();
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
             Scanner option = new Scanner(System.in);
             System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
@@ -58,8 +62,11 @@ public class Catch implements Helper{
         }
 
         if(rand.nextInt(2) == 1){
+            Renderer.wait(500);
+            Renderer.pokeopen();
             this.targetPokemon.healHealth(1000);
             player.AddPokemonIntoDeck(targetPokemon);
+            Renderer.pokeclose();
             System.out.println("Gotcha! " +targetPokemon.getName()+ " captured!");
             Scanner option = new Scanner(System.in);
             System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
@@ -77,6 +84,12 @@ public class Catch implements Helper{
             return true;
         }
         else{
+            System.out.print("Catching.");
+            Renderer.wait(1000);
+            System.out.print(".");
+            Renderer.wait(1000);
+            System.out.println(".");
+            System.out.println("===========================================");
             System.out.println("Failed to catch " +targetPokemon.getName()+"!");
             Scanner option = new Scanner(System.in);
             System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
