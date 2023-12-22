@@ -1,14 +1,18 @@
 package com.kurtosis.pokemon;
-import java.io.Serializable;
+
+import java.io.Serial;
 
 import com.kurtosis.constants.Move;
 import com.kurtosis.constants.Type;
 import com.kurtosis.constants.ZMove;
 
-class NormalType extends Pokemon implements Serializable {
+class NormalType extends Pokemon{
     public NormalType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove,double catchRate){
         super(name,hp,atk,def,spd,spe,Type.NORMAL,Move.SCRATCH,ZMove.ZNORMAL,catchRate);
     }
+
+    @Serial
+    private static final long serialVersionUID = -2021785946384945939L;
 
     @Override
     public String takeDamage(double enemyPower, Type enemyType){

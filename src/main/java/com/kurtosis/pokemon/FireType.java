@@ -1,13 +1,12 @@
 package com.kurtosis.pokemon;
 import java.io.Serial;
-import java.io.Serializable;
 
 import com.kurtosis.constants.ConsoleColours;
 import com.kurtosis.constants.Move;
 import com.kurtosis.constants.Type;
 import com.kurtosis.constants.ZMove;
 
-class FireType extends Pokemon implements Serializable {
+class FireType extends Pokemon{
     @Serial
     private static final long serialVersionUID = 3549922165660595007L;
 

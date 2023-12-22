@@ -7,7 +7,7 @@ import com.kurtosis.constants.Move;
 import com.kurtosis.constants.Type;
 import com.kurtosis.constants.ZMove;
 
-class GrassType extends Pokemon implements Serializable {
+class GrassType extends Pokemon{
     @Serial
     private static final long serialVersionUID = -5437902493174180470L;
 

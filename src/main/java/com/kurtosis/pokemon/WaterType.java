@@ -1,13 +1,12 @@
 package com.kurtosis.pokemon;
 import java.io.Serial;
-import java.io.Serializable;
 
 import com.kurtosis.constants.ConsoleColours;
 import com.kurtosis.constants.Move;
 import com.kurtosis.constants.Type;
 import com.kurtosis.constants.ZMove;
 
-class WaterType extends Pokemon implements Serializable{
+class WaterType extends Pokemon{
     @Serial
     private static final long serialVersionUID = 8461986472007082943L;
 
