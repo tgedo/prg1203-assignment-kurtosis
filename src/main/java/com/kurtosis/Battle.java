@@ -45,7 +45,7 @@ public class Battle implements Helper {
                         pokemon.decreaseActionValue(1000);
                     } 
                     else if(0.1 > Math.random()) {
-                        System.out.println("Random event is usable.");
+                        System.out.println("RANDOM EVENT: 'Speed Ribbon' is used!");
                         pokemon.decreaseActionValue(1000);
                     }
                 }
