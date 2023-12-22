@@ -47,7 +47,6 @@ public class User implements Serializable {
         deck.add(pokemon);
     }
 
-
     public static void serializeUser(User user, String fileName) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
             objectOutputStream.writeObject(user);
@@ -75,10 +74,6 @@ public class User implements Serializable {
         }
         return userList;
     }
-
-
-
-
     @Override
     public String toString() {
         return "User [userID=" + userID + ", userName=" + userName + ", userPass=" + userPass + ", deck=" + deck + "]";

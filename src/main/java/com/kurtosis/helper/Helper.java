@@ -1,5 +1,6 @@
 package com.kurtosis.helper;
 
+import java.util.Scanner;
 import com.kurtosis.Main;
 
 public interface Helper {
@@ -74,5 +75,21 @@ public interface Helper {
     }
 }
 
+    public static void checkExit(){
+        int choice = 1;
+        try(Scanner option = new Scanner(System.in)){
+            System.out.println("Enter 1 to return to main menu and 0 to stop playing.");
+            choice = option.nextInt();
+       }
+        if (choice == 0){
+            System.exit(0);
+        } 
+        else if (choice == 1) {
+            ;
+        }
+        else{
+            System.out.println("Enter '0' or '1' only.");
+        }
+    }
     
 }
