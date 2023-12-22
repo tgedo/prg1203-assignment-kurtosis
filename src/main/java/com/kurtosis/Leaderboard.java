@@ -40,6 +40,14 @@ public class Leaderboard{
         
         Helper.checkExit();
     }
+
+    public static void insertDummyLeaderboard() {
+        new Leaderboard("Alex" , 9999);
+        new Leaderboard("Jiet", 1200);
+        new Leaderboard("Nate", 2400);
+        new Leaderboard("Ze Hao", 6969);
+        new Leaderboard("Soon Li", 0);
+    }
 }
 
 
