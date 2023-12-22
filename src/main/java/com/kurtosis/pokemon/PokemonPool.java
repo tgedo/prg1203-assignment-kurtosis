@@ -20,7 +20,6 @@ public class PokemonPool {
         }
     }
 
-    //TODO: Change Stats
     private static void addCommonPokemon(){
         pokemonRate.add(new WaterType("Squirtle", 66, 35, 44, 43, 33, Move.WATERGUN,ZMove.ZWATER ,0.5));
         pokemonRate.add(new FireType("Charmander",60, 40, 34, 33, 36, Move.EMBER, ZMove.ZFIRE,0.5));

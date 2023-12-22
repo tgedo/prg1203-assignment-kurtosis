@@ -14,7 +14,6 @@ public class User implements Serializable {
     private static int lastAssignedID = 0; // Static variable to keep track of the last assigned userID
     private String userName;
     private String userPass;
-    private int Playcount = 0;
     private ArrayList<Pokemon> deck = new ArrayList<Pokemon>();
 
     public User(String userName, String userPass) throws IOException {
@@ -40,15 +39,6 @@ public class User implements Serializable {
         return userPass;
     }
 
-    public int getPlaycount() {
-        return Playcount;
-    }
-
-    public void addPlaycount() {
-        Playcount += 1;
-    }
-
-
     public ArrayList<Pokemon> getDeck() {
         return deck;
     }
@@ -56,9 +46,6 @@ public class User implements Serializable {
     public void AddPokemonIntoDeck(Pokemon pokemon){
         deck.add(pokemon);
     }
-
-
-
 
 
     public static void serializeUser(User user, String fileName) {
@@ -94,8 +81,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [userID=" + userID + ", userName=" + userName + ", userPass=" + userPass + ", Playcount="
-                + Playcount + ", deck=" + deck + "]";
+        return "User [userID=" + userID + ", userName=" + userName + ", userPass=" + userPass + ", deck=" + deck + "]";
     }
 
     

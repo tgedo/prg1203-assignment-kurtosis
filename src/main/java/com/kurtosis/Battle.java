@@ -2,10 +2,11 @@ package com.kurtosis;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.kurtosis.leaderboard.Leaderboard;
+import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
+import com.kurtosis.visual.Renderer;
 
-public class Battle {
+public class Battle implements Helper {
     private User player;
     private Pokemon playerPokemon;
     private Pokemon playerPokemon2;
@@ -42,7 +43,7 @@ public class Battle {
                 pokemon.decreaseActionValue(pokemon.getSpe());
                 
                 if(pokemon.equals(field[0])|| pokemon.equals(field[1])){
-                    if(Main.QTE(0.01)){
+                    if(Helper.QTE(0.01)){
                         pokemon.decreaseActionValue(1000);
                     } 
                     else if(0.1 > Math.random()) {
@@ -55,16 +56,16 @@ public class Battle {
                 }
                 pokemon.resetActionValue();
                 System.out.println("\n" + pokemon.getName() + ": "  + "HP = " + pokemon.getHp() + " is taking their turn!");
-                pokemon.renderHealthBar();
+                Renderer.renderHealthBar(pokemon);
                 //Player
                 if (pokemon.equals(field[0]) || pokemon.equals(field[1])) {
                     System.out.println("1 : " + field[2].getName() + ": HP= " + field[2].getHp());
-                    field[2].renderHealthBar();
+                    Renderer.renderHealthBar(field[2]);
                     System.out.println("2 : " + field[3].getName() + ": HP= " + field[3].getHp());
-                    field[3].renderHealthBar();
+                    Renderer.renderHealthBar(field[3]);
                     System.out.println("Pick a pokemon to attack!");
-                    Main.validateSelection(1,2);
-                    if(Main.QTE(0.1)){
+                    Helper.validateSelection(1,2);
+                    if(Helper.QTE(0.1)){
                         pokemon.dealZDamage(field[Main.playerDecision+1]);
                         battleScore += 100;
                     } else if(0.1 > Math.random()) {
@@ -89,13 +90,13 @@ public class Battle {
                 if(checkGameOver() == 2){
                     System.out.println(player.getUserName() + " Won!");
                     battleScore += 500;
-                    Leaderboard lb = new Leaderboard(player.getUserName(), battleScore);
+                    new Leaderboard(player.getUserName(), battleScore);
                     continueBattle = false;
                     System.out.println("1 : " + field[2].getName());
                     System.out.println("2 : " + field[3].getName());
                     System.out.println("Pick a pokemon to catch!");
-                    Main.validateSelection(1,2);
-                    Catch wildPokemon = new Catch(player, field[Main.playerDecision+1]);
+                    Helper.validateSelection(1,2);
+                    new Catch(player, field[Main.playerDecision+1]);
                     break;
                 }
                 else if(checkGameOver() == 1){

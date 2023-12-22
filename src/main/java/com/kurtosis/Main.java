@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.kurtosis.constants.ConsoleColours;
-import com.kurtosis.leaderboard.Leaderboard;
+import com.kurtosis.helper.Helper;
 import com.kurtosis.pokemon.Pokemon;
 import com.kurtosis.pokemon.PokemonPool;
 
@@ -21,11 +21,11 @@ public class Main {
             "       \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |\r\n" + //
             "        \\_.-'       |__|    `-._ |              '-.|     '-.| |   |\r\n" + //
             "                                `'                            '-._|" + ConsoleColours.RESET.text; //TODO add more info
-    static Scanner sc = new Scanner(System.in);
-    static int playerDecision;
-    static String playerQTE;
-    static String choicesMessage = "";
-    static String errorMessage = "";
+    public static Scanner sc = new Scanner(System.in);
+    public static int playerDecision;
+    public static String playerQTE;
+    public static String choicesMessage = "";
+    public static String errorMessage = "";
 
     public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
         User.deserializeUsers("users.ser");
@@ -54,7 +54,7 @@ public class Main {
         }
 
         choicesMessage += ("\n Choose an option!");
-        validateSelection(1, options.length);
+        Helper.validateSelection(1, options.length);
 
         sc.nextLine();
         
@@ -102,22 +102,12 @@ public class Main {
             starters.add(PokemonPool.referencePokemon());
 
             //Choose Starter 1
-            for (int starter = 1; starter <= starters.size(); starter++) {
-                choicesMessage += (starter + " : " + starters.get(starter - 1).getName() + '\n');
-            }
-            choicesMessage += ("\n Pick a starter!");
-            validateSelection(1, starters.size());
-            newUser.AddPokemonIntoDeck(starters.get(playerDecision - 1).clone());
+            chooseStarter(starters, newUser);
             starters.remove(playerDecision - 1);
-
             //Choose Starter 2
-            for (int starter = 1; starter <= starters.size(); starter++) {
-                choicesMessage += (starter + " : " + starters.get(starter - 1).getName() + '\n');
-            }
-            choicesMessage += ("\n Pick a starter!");
-            validateSelection(1, starters.size());
-            newUser.AddPokemonIntoDeck(starters.get(playerDecision - 1).clone());
+            chooseStarter(starters, newUser);
             return newUser;
+
         } else if (playerDecision == 3) {
             Leaderboard.displayLeaderboard();
             return null;
@@ -129,70 +119,18 @@ public class Main {
         }
     }
 
+    private static void chooseStarter(ArrayList<Pokemon> starters, User newUser) throws CloneNotSupportedException{
+        for (int starter = 1; starter <= starters.size(); starter++) {
+                choicesMessage += (starter + " : " + starters.get(starter - 1).getName() + '\n');
+            }
+            choicesMessage += ("\n Pick a starter!");
+            Helper.validateSelection(1, starters.size());
+            newUser.AddPokemonIntoDeck(starters.get(playerDecision - 1).clone());
+    }
+
     public static void StartGame(User player) throws CloneNotSupportedException{
         new Battle(player, PokemonPool.referencePokemon().clone(), PokemonPool.referencePokemon().clone());
     };
 
-    static void validateSelection(int min,int max){
-        while (true) {
-            System.out.println(choicesMessage);
-            System.out.println(errorMessage);
-             try{
-                playerDecision = sc.nextInt();
-            } catch(Exception e){
-                errorMessage = "Choose an integer!";
-                sc.nextLine();
-                continue;
-            };
-            if (playerDecision > max || playerDecision < 1){
-                errorMessage = "Pick a number between 1 and " + max;
-                continue;
-            }
-            choicesMessage = "";
-            errorMessage = "";
-            break;
-        }
-    }
-
-
-
-
-    /** Return true if success false if failed, triggerChance point form */
-    public static boolean QTE(double triggerChance){
-        if (triggerChance > Math.random()){
-            sc.nextLine();
-            System.out.println("QTE CHANCE! PRESS ENTER ON SIGNAL!");
-            for (int timer = 0; timer < Math.random()*10;timer++){
-                wait(500);
-                System.out.print("=");
-            }
-            System.out.print("NOW!!!");
-            long minTimeMillis = System.currentTimeMillis() + 10;
-            long maxTimeMillis = System.currentTimeMillis() + 1500;
-            playerQTE = sc.nextLine();
-            if (System.currentTimeMillis() < minTimeMillis){
-                System.out.println("QTE Failed! Too early!");
-                return false;
-            }
-            else if (System.currentTimeMillis() > maxTimeMillis) {
-                System.out.println("QTE Failed! Too late!");
-                return false;
-            }
-            System.out.println("QTE Success!");
-            return true;
-        }
-        return false;
-    }
     
-    private static void wait(int ms){
-    try
-    {
-        Thread.sleep(ms);
-    }
-    catch(InterruptedException ex)
-    {
-        Thread.currentThread().interrupt();
-    }
-}
-
 }

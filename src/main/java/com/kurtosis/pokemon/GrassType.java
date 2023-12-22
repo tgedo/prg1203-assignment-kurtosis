@@ -1,6 +1,5 @@
 package com.kurtosis.pokemon;
 import java.io.Serial;
-import java.io.Serializable;
 
 import com.kurtosis.constants.ConsoleColours;
 import com.kurtosis.constants.Move;

@@ -2,7 +2,6 @@ package com.kurtosis.pokemon;
 import java.io.Serial;
 import java.io.Serializable;
 
-import com.kurtosis.constants.ConsoleColours;
 import com.kurtosis.constants.Move;
 import com.kurtosis.constants.Type;
 import com.kurtosis.constants.ZMove;
@@ -56,33 +55,20 @@ abstract public class Pokemon implements Cloneable, Serializable {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public int getMaxHp(){
+        return maxHP;
     }
 
     public int getAtk() {
         return atk;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
     public int getDef() {
         return def;
     }
-
-    public void setDef(int def) {
-        this.def = def;
-    }
-
     /** Returns pokemon special defense stat */
     public int getSpd() {
         return spd;
-    }
-
-    public void setSpd(int spd) {
-        this.spd = spd;
     }
 
     /** Returns pokemon speed stat */
@@ -90,31 +76,15 @@ abstract public class Pokemon implements Cloneable, Serializable {
         return spe;
     }
 
-    public void setSpe(int spe) {
-        this.spe = spe;
-    }
-
     public Move getMove(Move move){return move;}
-
-    public void setMove(Move move) {
-        this.move = move;
-    }
 
     public Type getType() {
         return type;
     }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     public double getCatchRate() {
         return catchRate;
     }
 
-    public void setCatchRate(double catchRate) {
-        this.catchRate = catchRate;
-    }
 
     public void dealDamage(Pokemon target) {
         int basePower = this.getAtk() * (((this.getAtk() + this.move.power) / (target.getDef())));
@@ -154,25 +124,6 @@ abstract public class Pokemon implements Cloneable, Serializable {
         return "Recovered " + heal + " HP!";
     }
 
-    public void renderHealthBar(){
-        System.out.print("|");
-        double healthPercentage = 0;
-        double maxhealth = this.maxHP;
-        double currenthealth = this.hp;
-        healthPercentage = (currenthealth/maxhealth)*10;
-        System.out.print(ConsoleColours.RED.background);
-        int x = 0;
-        for(; x < healthPercentage; x++) {
-            System.out.print("__");
-        }
-        System.out.print(ConsoleColours.RESET.background);
-        System.out.print(ConsoleColours.WHITE.background);
-        for(; x < 10; x++) {
-            System.out.print("__");
-        }
-        System.out.println(ConsoleColours.RESET.background);
-    }
-    
     public int getActionValue() {
         return actionValue;
     }

@@ -1,4 +1,4 @@
-package com.kurtosis.leaderboard;
+package com.kurtosis;
 import java.util.*;
 
 public class Leaderboard{
