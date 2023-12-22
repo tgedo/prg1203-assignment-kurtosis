@@ -1,6 +1,8 @@
 package com.kurtosis;
 import java.util.*;
 
+import com.kurtosis.helper.Helper;
+
 public class Leaderboard{
     public static ArrayList<Leaderboard> userScores = new ArrayList<Leaderboard>();
     private int scores = 0;
@@ -36,22 +38,16 @@ public class Leaderboard{
             }
         }
         
-        Scanner option = new Scanner(System.in);
-        int choice = option.nextInt();
-
-        if (choice == 0){
-            System.exit(0);
-        } 
-        else if (choice == 1) {
-            ;
-        }
-        else{
-            System.out.println("Enter '0' or '1' only.");
-        }
-
-        
+        Helper.checkExit();
     }
 
+    public static void insertDummyLeaderboard() {
+        new Leaderboard("Alex" , 9999);
+        new Leaderboard("Jiet", 1200);
+        new Leaderboard("Nate", 2400);
+        new Leaderboard("Ze Hao", 6969);
+        new Leaderboard("Soon Li", 0);
+    }
 }
 
 
