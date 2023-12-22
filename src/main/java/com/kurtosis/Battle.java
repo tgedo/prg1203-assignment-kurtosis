@@ -66,9 +66,6 @@ public class Battle implements Helper {
                     if(Helper.QTE(0.1)){
                         pokemon.dealZDamage(field[Main.playerDecision+1]);
                         battleScore += 100;
-                    } else if(0.1 > Math.random()) {
-                            System.out.println("Random event is usable.");
-                            pokemon.decreaseActionValue(1000);
                     } else {
                     pokemon.dealDamage(field[Main.playerDecision+1]);
                     battleScore += 50;}

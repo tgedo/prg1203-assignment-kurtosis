@@ -24,8 +24,8 @@ public class Catch implements Helper{
         System.out.println(" Roll for a ball! ");
         int RNGBall = rand.nextInt(10);
         if(0.1 > Math.random()) {
-            System.out.println("RANDOM EVENT: item 'Name' is used!");
-            System.out.println("'Name' : Increases luck in rolling for pokeballs!");
+            System.out.println("RANDOM EVENT: item 'Lucky Rock' is used!");
+            System.out.println("'Lucky Rock' : Increases luck in rolling for pokeballs!");
             if(RNGBall >2){
                 RNGBall -= 2;
             }
