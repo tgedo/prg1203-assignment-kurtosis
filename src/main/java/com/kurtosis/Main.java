@@ -28,7 +28,7 @@ public class Main {
     public static String errorMessage = "";
 
     public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
-        User.deserializeUsers("users.ser");
+        User.deserializeUsers("prg1203-assignment-kurtosis\\users.ser");
         PokemonPool.setPokemonRate(3, 2, 1);
         while (true) {
             User player = MainMenu();

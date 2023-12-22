@@ -18,8 +18,6 @@ public class Battle implements Helper {
     private boolean continueBattle = true;
     private int battleScore= 0;
 
-
-
     public Battle(User player, Pokemon wild, Pokemon wild2) throws CloneNotSupportedException {
         this.player = player;
         this.wild = wild;
