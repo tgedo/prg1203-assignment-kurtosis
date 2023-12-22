@@ -9,19 +9,7 @@ public class Catch implements Helper{
     private User player;
     private Pokemon targetPokemon;
     private Random rand = new Random();
-    private enum Pokeball{
-        POKEBALL,
-        SUPERBALL,
-        ULTRABALL,
-        MASTERBALL;
-        public double rate;
-        static{
-            POKEBALL.rate = 1;
-            SUPERBALL.rate = 1.5;
-            ULTRABALL.rate = 2;
-            MASTERBALL.rate = 1000;
-        }
-    }  
+
 
     public Catch(User player, Pokemon targetPokemon) throws CloneNotSupportedException{
         this.player = player;
