@@ -29,6 +29,7 @@ public class Main {
 
     public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
         User.deserializeUsers("users.ser");
+        Leaderboard.insertDummyLeaderboard();
         PokemonPool.setPokemonRate(3, 2, 1);
         while (true) {
             User player = MainMenu();
