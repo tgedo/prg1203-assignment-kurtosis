@@ -1,17 +1,18 @@
+package com.kurtosis;
 import java.io.Serial;
 import java.io.Serializable;
 
-class FightingType extends Pokemon implements Serializable {
+class GrassType extends Pokemon implements Serializable {
     @Serial
-    private static final long serialVersionUID = 2116565707887814863L;
+    private static final long serialVersionUID = -5437902493174180470L;
 
-    public FightingType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
-        super(name,hp,atk,def,spd,spe,Type.FIGHTING,Move.KARATECHOP,ZMove.ZFIGHT,catchRate);
+    public GrassType(String name, int hp, int atk, int def, int spd, int spe, Move move, ZMove zMove, double catchRate){
+        super(name,hp,atk,def,spd,spe,Type.GRASS,Move.RAZORLEAF,ZMove.ZGRASS,catchRate);
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return ConsoleColours.GREEN.text + this.name + ConsoleColours.RESET.text;
     }
 
     @Override
@@ -19,10 +20,10 @@ class FightingType extends Pokemon implements Serializable {
         if (this.getHp() < 0){
             return this.getName() + " has already fainted! STOP!!";
         }
-        if (Type.FIGHTING.strong.contains(enemyType)) {
-            hp -= enemyPower*0.5;
+        if (Type.GRASS.strong.contains(enemyType)) {
+            hp -= (int) (enemyPower*0.5);
             return "The attack is not very effective. \n " +this.getName() + "received " + (enemyPower*0.5) + " damage." ;
-        } else if (Type.FIGHTING.weak.contains(enemyType)) {
+        } else if (Type.GRASS.weak.contains(enemyType)) {
             hp -= enemyPower*2;
             return "The attack is super effective! \n" + (enemyPower*2) + " damage received!" ;
         }

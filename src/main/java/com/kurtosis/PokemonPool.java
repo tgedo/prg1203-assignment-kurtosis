@@ -1,3 +1,4 @@
+package com.kurtosis;
 import java.util.ArrayList;
 import java.util.Random;
 

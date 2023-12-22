@@ -1,3 +1,4 @@
+package com.kurtosis;
 import java.io.Console;
 import java.io.Serializable;
 import java.util.Random;

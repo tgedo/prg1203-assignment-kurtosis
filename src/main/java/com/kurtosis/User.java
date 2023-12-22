@@ -1,7 +1,7 @@
+package com.kurtosis;
 import java.io.*;
 import java.util.ArrayList;
 
-//TODO update and read from .txt
 public class User implements Serializable {
     public static ArrayList<User> userList = new ArrayList<User>();
     private static final String USERS_FILE = "users.ser";
@@ -13,7 +13,7 @@ public class User implements Serializable {
     private ArrayList<Pokemon> deck = new ArrayList<Pokemon>();
 
     public User(String userName, String userPass) throws IOException {
-//        this.userID = ++lastAssignedID; // Increment lastAssignedID and assign it to userID
+        this.userID = ++lastAssignedID; // Increment lastAssignedID and assign it to userID
         this.userName = userName;
         this.userPass = userPass;
         User.userList.add(this);

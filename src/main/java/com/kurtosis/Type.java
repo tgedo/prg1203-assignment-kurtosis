@@ -1,3 +1,4 @@
+package com.kurtosis;
 import java.util.List;
 
 public enum Type {

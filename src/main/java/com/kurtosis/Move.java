@@ -1,3 +1,4 @@
+package com.kurtosis;
 public enum Move {
     SCRATCH,
     RAZORLEAF,

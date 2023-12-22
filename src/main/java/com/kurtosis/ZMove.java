@@ -1,3 +1,4 @@
+package com.kurtosis;
 public enum ZMove {
     ZNORMAL,
     ZGRASS,
